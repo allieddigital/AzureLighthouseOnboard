@@ -6,19 +6,13 @@
         "mspOfferName": "Allied Digital RIMM - Tier 3 Administration",
         "mspAssignmentName": "[guid(variables('mspOfferName'))]",
         "mspRegistrationName": "[guid(variables('mspOfferName'))]",
-        "authorizations": {
-            "defaultValue": [
-                {
-                    "principalId": "def1935f-89ea-473b-aa1d-c6d4b3462f03",
-                    "principalIdDisplayName": "Azure Lighthouse Administrators",
-                    "roleDefinitionId": "8e3af657-a8ff-443c-a75c-2fe8c4bcb635"
-                }
-            ],
-            "metadata": {
-                "description": "Specify an array of objects, containing tuples of Azure Active Directory principalId, a Azure roleDefinitionId, and an optional principalIdDisplayName. The roleDefinition specified is granted to the principalId in the provider's Active Directory and the principalIdDisplayName is visible to customers."
-            },
-            "type": "array"
-        }
+        "authorizations": [
+            {
+                "principalId": "def1935f-89ea-473b-aa1d-c6d4b3462f03",
+                "principalIdDisplayName": "Azure Lighthouse Administrators",
+                "roleDefinitionId": "8e3af657-a8ff-443c-a75c-2fe8c4bcb635"
+            }
+        ]
     },
     "resources": [
         {
