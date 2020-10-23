@@ -1,0 +1,16 @@
+{
+    "$schema": "https://aka.ms/azure-quickstart-templates-metadata-schema#",
+    "itemDisplayName": "RIMM Tier3",
+    "description": "This template creates a Standard Storage Account",
+    "summary": "Create a Standard Storage Account",
+    "githubUsername": "allieddigital",
+    "docOwner": "allieddigital",
+    "dateUpdated": "2020-10-23",
+    "type": "QuickStart",
+    "tags": {
+        "subscriptiontype": "Azure4Student",
+        "resource": "Storage Accounts",
+        "level": "Beginner",
+        "cost": "$"
+    }
+}
