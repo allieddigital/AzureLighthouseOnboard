@@ -1,0 +1,62 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "variables": {
+        "tenantId": "2f46c040-48e3-4eb8-8fbf-418417f64401",
+        "mspOfferName": "Allied Digital RIMM - Tier 3 Administration",
+        "mspAssignmentName": "[guid(variables('mspOfferName'))]",
+        "mspRegistrationName": "[guid(variables('mspOfferName'))]",
+        "authorizations": {
+            "defaultValue": [
+                {
+                    "principalId": "ee8f6d35-15f2-4252-b1b8-591358e8a244",
+                    "principalIdDisplayName": "PIM_Group",
+                    "roleDefinitionId": "acdd72a7-3385-48ef-bd42-f606fba81ae7"
+                },
+                {
+                    "principalId": "ee8f6d35-15f2-4252-b1b8-591358e8a244",
+                    "principalIdDisplayName": "PIM_Group",
+                    "roleDefinitionId": "91c1777a-f3dc-4fae-b103-61d183457e46"
+                }
+            ],
+            "metadata": {
+                "description": "Specify an array of objects, containing tuples of Azure Active Directory principalId, a Azure roleDefinitionId, and an optional principalIdDisplayName. The roleDefinition specified is granted to the principalId in the provider's Active Directory and the principalIdDisplayName is visible to customers."
+            },
+            "type": "array"
+        }
+    },
+    "resources": [
+        {
+            "type": "Microsoft.ManagedServices/registrationDefinitions",
+            "apiVersion": "2019-09-01",
+            "name": "[variables('mspRegistrationName')]",
+            "properties": {
+                "authorizations": "[variables('authorizations')]",
+                "description": "Provides Tier 3 Administration Support https://www.allieddigital.net/us/?p=182",
+                "managedByTenantId": "[variables('tenantId')]",
+                "registrationDefinitionName": "RIMM - Tier 3 Administration"
+            }
+        },
+        {
+            "type": "Microsoft.ManagedServices/registrationAssignments",
+            "apiVersion": "2019-09-01",
+            "name": "[variables('mspAssignmentName')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.ManagedServices/registrationDefinitions/', variables('mspRegistrationName'))]"
+            ],
+            "properties": {
+                "registrationDefinitionId": "[resourceId('Microsoft.ManagedServices/registrationDefinitions/', variables('mspRegistrationName'))]"
+            }
+        }
+    ],
+    "outputs": {
+        "mspOfferName": {
+            "type": "string",
+            "value": "[concat('Managed by', ' ', variables('mspOfferName'))]"
+        },
+        "authorizations": {
+            "type": "array",
+            "value": "[variables('authorizations')]"
+        }
+    }
+}
