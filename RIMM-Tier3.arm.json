@@ -9,14 +9,9 @@
         "authorizations": {
             "defaultValue": [
                 {
-                    "principalId": "ee8f6d35-15f2-4252-b1b8-591358e8a244",
-                    "principalIdDisplayName": "PIM_Group",
-                    "roleDefinitionId": "acdd72a7-3385-48ef-bd42-f606fba81ae7"
-                },
-                {
-                    "principalId": "ee8f6d35-15f2-4252-b1b8-591358e8a244",
-                    "principalIdDisplayName": "PIM_Group",
-                    "roleDefinitionId": "91c1777a-f3dc-4fae-b103-61d183457e46"
+                    "principalId": "def1935f-89ea-473b-aa1d-c6d4b3462f03",
+                    "principalIdDisplayName": "Azure Lighthouse Administrators",
+                    "roleDefinitionId": "8e3af657-a8ff-443c-a75c-2fe8c4bcb635"
                 }
             ],
             "metadata": {
