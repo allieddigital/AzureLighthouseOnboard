@@ -27,18 +27,10 @@ jobs:
         uses: anthony-c-martin/setup-bicep@v0.1
 
       - name: Build Bicep
-        run: bicep build ./modules/subscription-managing-tenant-approvers.bicep --outdir site
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/heads/main'
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: site
-
+        run: bicep build ./modules/subscription-managing-tenant-approvers.bicep --outdir out
 
       - name: Semantic Release
+        if: ${{ success() }}
         uses: cycjimmy/semantic-release-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          dry_run: true
