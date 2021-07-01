@@ -10,10 +10,9 @@ jobs:
   deploy:
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: true  # Fetch Hugo themes (true OR recursive)
-          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+      - name: Checkout
+        uses: actions/checkout@v2
+
 
       # - name: Setup Hugo
       #   uses: peaceiris/actions-hugo@v2
@@ -36,3 +35,10 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: site
+
+
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          dry_run: true

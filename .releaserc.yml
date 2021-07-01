@@ -1,0 +1,9 @@
+branches:
+- main
+plugins:
+- "@semantic-release/commit-analyzer"
+- "@semantic-release/release-notes-generator"
+- path: "@semantic-release/github"
+- path: "@semantic-release/exec"
+  prepareCmd: "set-version ${nextRelease.version}"
+  publishCmd: "publish-package"
