@@ -1,2 +1,0 @@
-# Tier 1 Deployment
-[![Deploy to Azure](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fallieddigital%2FAzureLighthouseOnboard%2Fmain%2FRIMM-Tier3.arm.json)
