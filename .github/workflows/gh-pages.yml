@@ -28,11 +28,11 @@ jobs:
         uses: anthony-c-martin/setup-bicep@v0.1
 
       - name: Build Bicep
-        run: bicep build ./modules/subscription-managing-tenant-approvers.bicep --outdir site/content
+        run: bicep build ./modules/subscription-managing-tenant-approvers.bicep --outdir docs
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: sites/public
+          publish_dir: docs
