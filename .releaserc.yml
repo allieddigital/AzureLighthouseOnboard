@@ -4,4 +4,6 @@ plugins:
 - "@semantic-release/commit-analyzer"
 - "@semantic-release/release-notes-generator"
 - path: "@semantic-release/github"
-  assets: out/*
+  assets:
+  - out/*
+  - "!**/.gitkeep"
