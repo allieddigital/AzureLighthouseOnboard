@@ -29,6 +29,8 @@ jobs:
       - name: Build Bicep
         run: bicep build ./modules/subscription-managing-tenant-approvers.bicep --outdir out
 
+      - run: rm out/.gitkeep
+
       - name: Semantic Release
         if: ${{ success() }}
         uses: cycjimmy/semantic-release-action@v2
