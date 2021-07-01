@@ -6,4 +6,4 @@ plugins:
 - path: "@semantic-release/github"
   assets:
   - out/*
-  - "!**/.gitkeep"
+  - "!out/.gitkeep"
