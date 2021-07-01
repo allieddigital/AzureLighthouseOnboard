@@ -1,2 +1,2 @@
 # Tier 1 Deployment
-[![Deploy to Azure](https://azurecomcdn.azureedge.net/mediahandler/acomblog/media/Default/blog/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fallieddigital%2FAzureLighthouseOnboard%2Fmain%2FRIMM-Tier3.arm.json)
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fgithub.com%2Fallieddigital%2FAzureLighthouseOnboard%2Freleases%2Fdownload%2Fv1.0.0%2Fsubscription-managing-tenant-approvers.json)
