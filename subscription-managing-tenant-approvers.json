@@ -5,75 +5,62 @@
     "_generator": {
       "name": "bicep",
       "version": "0.4.63.48766",
-      "templateHash": "11998796262488698646"
+      "templateHash": "3545407864419336086"
     }
   },
   "parameters": {
     "mspOfferName": {
       "type": "string",
-      "defaultValue": "<to be filled out by MSP> Specify a title for your offer",
+      "defaultValue": "Allied Digital Services LLC Remote Infrastructure Management and Monitoring (RIMM)",
       "metadata": {
         "description": "Specify a unique name for your offer"
       }
     },
     "mspOfferDescription": {
       "type": "string",
-      "defaultValue": "<to be filled out by MSP> Provide a brief description of your offer",
+      "defaultValue": "Provides access to an Azure Subscription via Azure Lighthouse. All access must be reviewed and approved by a Privileged Identity Management manager and only lasts for 4 hours.",
       "metadata": {
         "description": "Name of the Managed Service Provider offering"
       }
     },
     "managedByTenantId": {
       "type": "string",
-      "defaultValue": "<to be filled out by MSP> Provide your tenant id",
+      "defaultValue": "2f46c040-48e3-4eb8-8fbf-418417f64401",
       "metadata": {
         "description": "Specify the tenant id of the Managed Service Provider"
-      }
-    },
-    "authorizations": {
-      "type": "array",
-      "defaultValue": [
-        {
-          "principalId": "00000000-0000-0000-0000-000000000000",
-          "roleDefinitionId": "acdd72a7-3385-48ef-bd42-f606fba81ae7",
-          "principalIdDisplayName": "PIM_Group"
-        },
-        {
-          "principalId": "00000000-0000-0000-0000-000000000000",
-          "roleDefinitionId": "91c1777a-f3dc-4fae-b103-61d183457e46",
-          "principalIdDisplayName": "PIM_Group"
-        }
-      ],
-      "metadata": {
-        "description": "Specify an array of objects, containing tuples of Azure Active Directory principalId, a Azure roleDefinitionId, and an optional principalIdDisplayName. The roleDefinition specified is granted to the principalId in the provider's Active Directory and the principalIdDisplayName is visible to customers."
-      }
-    },
-    "eligibleAuthorizations": {
-      "type": "array",
-      "defaultValue": [
-        {
-          "justInTimeAccessPolicy": {
-            "multiFactorAuthProvider": "Azure",
-            "maximumActivationDuration": "PT8H",
-            "managedByTenantApprovers": [
-              {
-                "principalId": "ae3a5392-a2ec-4cc7-89cd-db23ac756900",
-                "principalIdDisplayName": "PIM-Approvers"
-              }
-            ]
-          },
-          "principalId": "00000000-0000-0000-0000-000000000000",
-          "principalIdDisplayName": "PIM_Group",
-          "roleDefinitionId": "b24988ac-6180-42a0-ab88-20f7382dd24c"
-        }
-      ],
-      "metadata": {
-        "description": "Provide the auhtorizations that will have just-in-time role assignments on customer environments with support for approvals from the managing tenant"
       }
     }
   },
   "functions": [],
   "variables": {
+    "defaultGroup": "7c442b20-3d20-4881-b6cd-26e6cc2bbc12",
+    "managersGroup": "6cf7f962-2ff0-4fa1-a11e-e37a7cd9f24d",
+    "contributorRole": "b24988ac-6180-42a0-ab88-20f7382dd24c",
+    "accessGroup": "809f9e90-2459-4568-9545-075bb1584a0e",
+    "authorizations": [
+      {
+        "principalId": "[variables('defaultGroup')]",
+        "roleDefinitionId": "[variables('contributorRole')]",
+        "principalIdDisplayName": "Allied Digital NANDPS Partner Admin Link - Never Used Directly"
+      }
+    ],
+    "eligibleAuthorizations": [
+      {
+        "justInTimeAccessPolicy": {
+          "multiFactorAuthProvider": "Azure",
+          "maximumActivationDuration": "PT4H",
+          "managedByTenantApprovers": [
+            {
+              "principalId": "[variables('managersGroup')]",
+              "principalIdDisplayName": "Allied Digital NANDPS Access Managers"
+            }
+          ]
+        },
+        "principalId": "[variables('accessGroup')]",
+        "principalIdDisplayName": "Allied Digital NANDPS PIM Eligible Access",
+        "roleDefinitionId": "[variables('contributorRole')]"
+      }
+    ],
     "mspRegistrationName_var": "[guid(parameters('mspOfferName'))]",
     "mspAssignmentName_var": "[guid(parameters('mspOfferName'))]"
   },
@@ -86,8 +73,8 @@
         "registrationDefinitionName": "[parameters('mspOfferName')]",
         "description": "[parameters('mspOfferDescription')]",
         "managedByTenantId": "[parameters('managedByTenantId')]",
-        "authorizations": "[parameters('authorizations')]",
-        "eligibleAuthorizations": "[parameters('eligibleAuthorizations')]"
+        "authorizations": "[variables('authorizations')]",
+        "eligibleAuthorizations": "[variables('eligibleAuthorizations')]"
       }
     },
     {
@@ -109,11 +96,11 @@
     },
     "authorizations": {
       "type": "array",
-      "value": "[parameters('authorizations')]"
+      "value": "[variables('authorizations')]"
     },
     "eligibleAuthorizations": {
       "type": "array",
-      "value": "[parameters('eligibleAuthorizations')]"
+      "value": "[variables('eligibleAuthorizations')]"
     }
   }
 }
