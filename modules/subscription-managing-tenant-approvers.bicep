@@ -1,45 +1,44 @@
+// This must be done first for the Microsoft.ManagedServices namespace
+// https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/error-register-resource-provider#solution-3---azure-portal
 targetScope = 'subscription'
 
 @description('Specify a unique name for your offer')
-param mspOfferName string = '<to be filled out by MSP> Specify a title for your offer'
+param mspOfferName string = 'Allied Digital Services LLC Remote Infrastructure Management and Monitoring (RIMM)'
 
 @description('Name of the Managed Service Provider offering')
-param mspOfferDescription string = '<to be filled out by MSP> Provide a brief description of your offer'
+param mspOfferDescription string = 'Provides access to an Azure Subscription via Azure Lighthouse. All access must be reviewed and approved by a Privileged Identity Management manager and only lasts for 4 hours.'
 
 @description('Specify the tenant id of the Managed Service Provider')
-param managedByTenantId string = '<to be filled out by MSP> Provide your tenant id'
+param managedByTenantId string = '2f46c040-48e3-4eb8-8fbf-418417f64401'
 
+var defaultGroup = '7c442b20-3d20-4881-b6cd-26e6cc2bbc12'
+var managersGroup = '6cf7f962-2ff0-4fa1-a11e-e37a7cd9f24d'
+var contributorRole = 'b24988ac-6180-42a0-ab88-20f7382dd24c'
+var accessGroup = '809f9e90-2459-4568-9545-075bb1584a0e'
 
-@description('Specify an array of objects, containing tuples of Azure Active Directory principalId, a Azure roleDefinitionId, and an optional principalIdDisplayName. The roleDefinition specified is granted to the principalId in the provider\'s Active Directory and the principalIdDisplayName is visible to customers.')
-param authorizations array = [
+var authorizations = [
   {
-    principalId: '00000000-0000-0000-0000-000000000000'
-    roleDefinitionId: 'acdd72a7-3385-48ef-bd42-f606fba81ae7'
-    principalIdDisplayName: 'PIM_Group'
-  }
-  {
-    principalId: '00000000-0000-0000-0000-000000000000'
-    roleDefinitionId: '91c1777a-f3dc-4fae-b103-61d183457e46'
-    principalIdDisplayName: 'PIM_Group'
+    principalId: defaultGroup
+    roleDefinitionId: contributorRole
+    principalIdDisplayName: 'Allied Digital NANDPS Partner Admin Link - Never Used Directly'
   }
 ]
 
-@description('Provide the auhtorizations that will have just-in-time role assignments on customer environments with support for approvals from the managing tenant')
-param eligibleAuthorizations array = [
+var eligibleAuthorizations = [
   {
     justInTimeAccessPolicy: {
       multiFactorAuthProvider: 'Azure'
-      maximumActivationDuration: 'PT8H'
+      maximumActivationDuration: 'PT4H'
       managedByTenantApprovers: [
         {
-          principalId: 'ae3a5392-a2ec-4cc7-89cd-db23ac756900'
-          principalIdDisplayName: 'PIM-Approvers'
+          principalId: managersGroup
+          principalIdDisplayName: 'Allied Digital NANDPS Access Managers'
         }
       ]
     }
-    principalId: '00000000-0000-0000-0000-000000000000'
-    principalIdDisplayName: 'PIM_Group'
-    roleDefinitionId: 'b24988ac-6180-42a0-ab88-20f7382dd24c'
+    principalId: accessGroup
+    principalIdDisplayName: 'Allied Digital NANDPS PIM Eligible Access'
+    roleDefinitionId: contributorRole
   }
 ]
 
