@@ -3,3 +3,6 @@
 
 #Default VM Test
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#blade/Microsoft_Azure_CreateUIDef/CustomDeploymentBlade/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fallieddigital%2FAzureLighthouseOnboard%2Fmain%2Fmodules%2FdefaultVM.json/uiFormDefinitionUri/https%3A%2F%2Fraw.githubusercontent.com%2Fallieddigital%2FAzureLighthouseOnboard%2Fmain%2Fmodules%2FdefaultVM.ui.json)
+
+#Simple VM Test
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#blade/Microsoft_Azure_CreateUIDef/CustomDeploymentBlade/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fallieddigital%2FAzureLighthouseOnboard%2Fmain%2Fmodules%2FsimpleVM.json/uiFormDefinitionUri/https%3A%2F%2Fraw.githubusercontent.com%2Fallieddigital%2FAzureLighthouseOnboard%2Fmain%2Fmodules%2FsimpleVM.ui.json)
