@@ -1,0 +1,186 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.4.350.12131",
+      "templateHash": "17402955660351137830"
+    }
+  },
+  "parameters": {
+    "name": {
+      "type": "string"
+    },
+    "subnetRef": {
+      "type": "string"
+    },
+    "environment": {
+      "type": "string",
+      "allowedValues": [
+        "Production",
+        "Development",
+        "Test"
+      ]
+    },
+    "created": {
+      "type": "string",
+      "metadata": {
+        "description": "Specify an ISO 8601 formatted date when this VM entered service. Example: 2021-07-14"
+      }
+    },
+    "requestor": {
+      "type": "string",
+      "metadata": {
+        "description": "Specify a fully qualified username (usually looks like an email address). Example: jdoe@nandps.onmicrosoft.com"
+      }
+    },
+    "adminPassword": {
+      "type": "secureString"
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "westus2"
+    },
+    "networkInterfaceName": {
+      "type": "string",
+      "defaultValue": "[parameters('name')]"
+    },
+    "virtualMachineComputerName": {
+      "type": "string",
+      "defaultValue": "[parameters('name')]"
+    },
+    "osDiskType": {
+      "type": "string",
+      "defaultValue": "Premium_LRS"
+    },
+    "virtualMachineSize": {
+      "type": "string",
+      "defaultValue": "Standard_B2ms"
+    },
+    "adminUsername": {
+      "type": "string",
+      "defaultValue": "nandadmin"
+    },
+    "patchMode": {
+      "type": "string",
+      "defaultValue": "AutomaticByOS"
+    },
+    "enableHotpatching": {
+      "type": "bool",
+      "defaultValue": false
+    },
+    "vnetName": {
+      "type": "string"
+    },
+    "subnetName": {
+      "type": "string"
+    },
+    "zone": {
+      "type": "string",
+      "defaultValue": "",
+      "allowedValues": [
+        "1",
+        "2",
+        "3",
+        ""
+      ]
+    },
+    "imageReference": {
+      "type": "object",
+      "defaultValue": {
+        "publisher": "MicrosoftWindowsServer",
+        "offer": "WindowsServer",
+        "sku": "2019-datacenter-smalldisk-g2",
+        "version": "latest"
+      }
+    }
+  },
+  "functions": [],
+  "resources": [
+    {
+      "type": "Microsoft.Network/networkInterfaces",
+      "apiVersion": "2018-10-01",
+      "name": "[parameters('networkInterfaceName')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "ipConfigurations": [
+          {
+            "name": "ipconfig1",
+            "properties": {
+              "subnet": {
+                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', split(format('{0}/{1}', parameters('vnetName'), parameters('subnetName')), '/')[0], split(format('{0}/{1}', parameters('vnetName'), parameters('subnetName')), '/')[1])]"
+              },
+              "privateIPAllocationMethod": "Dynamic"
+            }
+          }
+        ]
+      },
+      "tags": {
+        "Environment": "[parameters('environment')]",
+        "Created": "[parameters('created')]",
+        "Requestor": "[parameters('requestor')]"
+      }
+    },
+    {
+      "type": "Microsoft.Compute/virtualMachines",
+      "apiVersion": "2021-03-01",
+      "name": "[parameters('name')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "hardwareProfile": {
+          "vmSize": "[parameters('virtualMachineSize')]"
+        },
+        "storageProfile": {
+          "osDisk": {
+            "createOption": "FromImage",
+            "managedDisk": {
+              "storageAccountType": "[parameters('osDiskType')]"
+            }
+          },
+          "imageReference": "[parameters('imageReference')]"
+        },
+        "networkProfile": {
+          "networkInterfaces": [
+            {
+              "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaceName'))]"
+            }
+          ]
+        },
+        "osProfile": {
+          "computerName": "[parameters('virtualMachineComputerName')]",
+          "adminUsername": "[parameters('adminUsername')]",
+          "adminPassword": "[parameters('adminPassword')]",
+          "windowsConfiguration": {
+            "enableAutomaticUpdates": true,
+            "provisionVMAgent": true,
+            "patchSettings": {
+              "enableHotpatching": "[parameters('enableHotpatching')]",
+              "patchMode": "[parameters('patchMode')]"
+            }
+          }
+        },
+        "diagnosticsProfile": {
+          "bootDiagnostics": {
+            "enabled": true
+          }
+        }
+      },
+      "tags": {
+        "Environment": "Production",
+        "Created": "2021-07-14",
+        "CreatedBy": "jgrote@allieddigital.net"
+      },
+      "zones": "[if(not(equals(parameters('zone'), '')), createArray(parameters('zone')), null())]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaceName'))]"
+      ]
+    }
+  ],
+  "outputs": {
+    "adminUsername": {
+      "type": "string",
+      "value": "[parameters('adminUsername')]"
+    }
+  }
+}
