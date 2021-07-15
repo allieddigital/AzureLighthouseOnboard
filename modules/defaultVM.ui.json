@@ -31,7 +31,7 @@
                     "allowedValues": [
                         "westus2"
                     ],
-                    "visible": false
+                    "visible": true
                 }
             }
         },
@@ -43,11 +43,21 @@
                 "toolTip": "The virtual machine name. It is recommended to prefix this with np",
                 "placeholder": "np-myvm01",
                 "constraints": {
-                    "required": true,
-                    "regex": "",
-                    "validationMessage": ""
+                    "regex": "^\\w{4,}$",
+                    "validationMessage": "Server Name must be at least 4 characters long",
+                    "required": true
                 },
                 "visible": true
+            },
+            {
+                "name": "adminUsername",
+                "type": "Microsoft.Compute.UserNameTextBox",
+                "label": "Admin Username",
+                "toolTip": "Admin username for the machine, leave as default unless you have a reason to change.",
+                "osPlatform": "Windows",
+                "constraints": {
+                    "required": true
+                }
             },
             {
                 "name": "adminPassword",
@@ -56,14 +66,14 @@
                     "password": "Admin Password",
                     "confirmPassword": "Confirm password"
                 },
-                "toolTip": "",
+                "toolTip": "User Password",
                 "constraints": {
                     "required": true,
-                    "regex": "^[a-zA-Z0-9]{8,}$",
-                    "validationMessage": "Password must be at least 8 characters long, contain only numbers and letters"
+                    "regex": "^[a-zA-Z0-9]{12,}$",
+                    "validationMessage": "Password must be at least 12 characters long, contain only numbers and letters"
                 },
                 "options": {
-                    "hideConfirmation": true
+                    "hideConfirmation": false
                 },
                 "visible": true
             },
@@ -105,7 +115,7 @@
                 "type": "Microsoft.Common.DropDown",
                 "label": "Environment",
                 "defaultValue": " ",
-                "toolTip": "",
+                "toolTip": "Choose which operational environment this VM is for",
                 "constraints": {
                     "required": true,
                     "allowedValues": [
@@ -122,20 +132,6 @@
                             "value": "Test"
                         }
                     ]
-                },
-                "visible": true
-            },
-            {
-                "name": "created",
-                "type": "Microsoft.Common.TextBox",
-                "label": "Created",
-                "defaultValue": "",
-                "placeholder": "",
-                "toolTip": "Specify an ISO 8601 formatted date when this VM entered service. Example: 2021-07-14",
-                "constraints": {
-                    "required": true,
-                    "regex": "^(\\d{4})-(\\d{2})-(\\d{2})$",
-                    "validationMessage": "You must enter an ISO 8601 formatted date (yyyy-mm-dd)"
                 },
                 "visible": true
             },
@@ -176,30 +172,21 @@
                     ]
                 },
                 "visible": true
-            },
-            {
-                "name": "adminUsername",
-                "type": "Microsoft.Compute.UserNameTextBox",
-                "label": "Admin Username",
-                "defaultValue": "nandadmin",
-                "toolTip": "Admin username for the machine, leave as default unless you have a reason to change.",
-                "osPlatform": "Windows",
-                "constraints": {
-                    "required": true
-                }
             }
         ],
         "steps": [],
         "outputs": {
             "name": "[basics('name')]",
+            "location": "[location()]",
             "vnetName": "[basics('network').name]",
             "subnetName": "[basics('network').subnets.subnet1.name]",
             "environment": "[basics('environment')]",
-            "created": "[basics('created')]",
             "requestor": "[basics('requestor')]",
             "adminUsername": "[basics('adminUsername')]",
             "adminPassword": "[basics('adminPassword')]",
-            "zone": "[basics('zone')]"
+            "zone": "[basics('zone')]",
+            "newOrExisting": "[basics('network').newOrExisting]",
+            "vnetResourceGroup": "[basics('network').resourceGroup]"
         }
     }
 }
