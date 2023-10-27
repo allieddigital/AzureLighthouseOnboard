@@ -17,10 +17,11 @@ jobs:
         uses: anthony-c-martin/setup-bicep@v0.1
 
       - name: Build Bicep
-        run: bicep build ./modules/subscription-managing-tenant-approvers.bicep --outdir out
+        run: bicep build ./modules/SOC-subscription-active.bicep --outdir out
 
       - name: Publish to Github Pages 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: gh-pages # The branch the action should deploy to.
           folder: out # The folder the action should deploy.
+#
