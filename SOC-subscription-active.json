@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.22.6.54827",
-      "templateHash": "14105849113718818253"
+      "templateHash": "18094190641236878283"
     }
   },
   "variables": {
@@ -17,6 +17,7 @@
       "L2SocOperators": "b933b7fa-b3b5-47d8-a0cb-1b92b952d0eb"
     },
     "roleMap": {
+      "MicrosoftSentinelReader": "8d289c81-5878-46d4-8554-54e1e3d8b5cb",
       "MicrosoftSentinelResponder": "3e150937-b8fe-4cfb-8069-0eaf05ecd056",
       "MicrosoftSentinelContributor": "ab8e14d6-4a74-4a29-9ba8-549422addade",
       "MicrosoftSentinelAutomationContributor": "f4c81013-99ee-4d62-a7ee-b3f1f648599a"
@@ -25,15 +26,25 @@
       {
         "principalId": "[variables('groupMap').L1SocOperators]",
         "principalIdDisplayName": "SOC Level 1 Operators",
-        "roleDefinitionId": "[variables('roleMap').MicrosoftSentinelResponder]"
+        "roleDefinitionId": "[variables('roleMap').MicrosoftSentinelReader]"
       },
       {
         "principalId": "[variables('groupMap').L1SocOperators]",
+        "principalIdDisplayName": "SOC Level 1 Operators",
+        "roleDefinitionId": "[variables('roleMap').MicrosoftSentinelResponder]"
+      },
+      {
+        "principalId": "[variables('groupMap').L2SocOperators]",
+        "principalIdDisplayName": "SOC Level 2 Operators",
+        "roleDefinitionId": "[variables('roleMap').MicrosoftSentinelReader]"
+      },
+      {
+        "principalId": "[variables('groupMap').L2SocOperators]",
         "principalIdDisplayName": "SOC Level 2 Operators",
         "roleDefinitionId": "[variables('roleMap').MicrosoftSentinelContributor]"
       },
       {
-        "principalId": "[variables('groupMap').L1SocOperators]",
+        "principalId": "[variables('groupMap').L2SocOperators]",
         "principalIdDisplayName": "SOC Level 2 Operators",
         "roleDefinitionId": "[variables('roleMap').MicrosoftSentinelAutomationContributor]"
       }
