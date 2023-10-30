@@ -14,6 +14,7 @@ var groupMap = {
 }
 
 var roleMap = {
+  MicrosoftSentinelReader: '8d289c81-5878-46d4-8554-54e1e3d8b5cb'
   MicrosoftSentinelResponder: '3e150937-b8fe-4cfb-8069-0eaf05ecd056'
   MicrosoftSentinelContributor: 'ab8e14d6-4a74-4a29-9ba8-549422addade'
   MicrosoftSentinelAutomationContributor: 'f4c81013-99ee-4d62-a7ee-b3f1f648599a'
@@ -24,15 +25,25 @@ var authorizations = [
   {
     principalId: groupMap.L1SocOperators
     principalIdDisplayName: 'SOC Level 1 Operators'
-    roleDefinitionId: roleMap.MicrosoftSentinelResponder
+    roleDefinitionId: roleMap.MicrosoftSentinelReader
   }
   {
     principalId: groupMap.L1SocOperators
+    principalIdDisplayName: 'SOC Level 1 Operators'
+    roleDefinitionId: roleMap.MicrosoftSentinelResponder
+  }
+  {
+    principalId: groupMap.L2SocOperators
+    principalIdDisplayName: 'SOC Level 2 Operators'
+    roleDefinitionId: roleMap.MicrosoftSentinelReader
+  }
+  {
+    principalId: groupMap.L2SocOperators
     principalIdDisplayName: 'SOC Level 2 Operators'
     roleDefinitionId: roleMap.MicrosoftSentinelContributor
   }
   {
-    principalId: groupMap.L1SocOperators
+    principalId: groupMap.L2SocOperators
     principalIdDisplayName: 'SOC Level 2 Operators'
     roleDefinitionId: roleMap.MicrosoftSentinelAutomationContributor
   }
