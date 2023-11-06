@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.23.1.45101",
-      "templateHash": "4196059447138266299"
+      "templateHash": "331886322231202479"
     }
   },
   "variables": {
@@ -88,7 +88,7 @@
     },
     {
       "type": "Microsoft.ManagedServices/registrationAssignments",
-      "apiVersion": "2019-06-01",
+      "apiVersion": "2022-10-01",
       "name": "[guid(variables('mspOfferName'))]",
       "properties": {
         "registrationDefinitionId": "[subscriptionResourceId('Microsoft.ManagedServices/registrationDefinitions', guid(variables('mspOfferName')))]"
