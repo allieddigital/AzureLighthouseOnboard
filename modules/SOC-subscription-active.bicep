@@ -83,7 +83,7 @@ resource mspRegistration 'Microsoft.ManagedServices/registrationDefinitions@2022
   }
 }
 
-resource mspAssignment 'Microsoft.ManagedServices/registrationAssignments@2019-06-01' = {
+resource mspAssignment 'Microsoft.ManagedServices/registrationAssignments@2022-10-01' = {
   name: guid(mspOfferName)
   properties: {
     registrationDefinitionId: mspRegistration.id
