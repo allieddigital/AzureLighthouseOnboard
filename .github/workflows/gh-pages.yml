@@ -19,6 +19,12 @@ jobs:
       - name: Build Bicep
         run: bicep build ./modules/SOC-subscription-active.bicep --outdir out
 
+      - name: Build Bicep
+        run: bicep build ./modules/RIMM-subscription-Contributor.bicep --outdir out
+
+      - name: Build Bicep
+        run: bicep build ./modules/EM-subscription-Reader.bicep --outdir out
+
       - name: Publish to Github Pages 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
