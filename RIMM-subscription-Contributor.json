@@ -1,0 +1,69 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.23.1.45101",
+      "templateHash": "3230224549715618118"
+    }
+  },
+  "variables": {
+    "mspOfferName": "Remote Infrastructure Management - Full Azure Management",
+    "mspOfferDescription": "Enables Allied Digital Remote Infrastructure Management to manage your entire subscription except for permissions assignment.",
+    "managedByTenantId": "2f46c040-48e3-4eb8-8fbf-418417f64401",
+    "groupMap": {
+      "L1RimmOperators": "11a729de-38fb-4056-81d0-b17d37d9a66a",
+      "L2RimmOperators": "1a3c024d-2ce5-43e7-9c7c-26b17a604755"
+    },
+    "roleMap": {
+      "Contributor": "1a3c024d-2ce5-43e7-9c7c-26b17a604755"
+    },
+    "authorizations": [
+      {
+        "principalId": "[variables('groupMap').L1RimmOperators]",
+        "principalIdDisplayName": "RIMM Level 1 Operators",
+        "roleDefinitionId": "[variables('roleMap').Contributor]"
+      },
+      {
+        "principalId": "[variables('groupMap').L2RimmOperators]",
+        "principalIdDisplayName": "RIMM Level 2 Operators",
+        "roleDefinitionId": "[variables('roleMap').Contributor]"
+      }
+    ]
+  },
+  "resources": [
+    {
+      "type": "Microsoft.ManagedServices/registrationDefinitions",
+      "apiVersion": "2022-10-01",
+      "name": "[guid(variables('mspOfferName'))]",
+      "properties": {
+        "registrationDefinitionName": "[variables('mspOfferName')]",
+        "description": "[variables('mspOfferDescription')]",
+        "managedByTenantId": "[variables('managedByTenantId')]",
+        "authorizations": "[variables('authorizations')]"
+      }
+    },
+    {
+      "type": "Microsoft.ManagedServices/registrationAssignments",
+      "apiVersion": "2022-10-01",
+      "name": "[guid(variables('mspOfferName'))]",
+      "properties": {
+        "registrationDefinitionId": "[subscriptionResourceId('Microsoft.ManagedServices/registrationDefinitions', guid(variables('mspOfferName')))]"
+      },
+      "dependsOn": [
+        "[subscriptionResourceId('Microsoft.ManagedServices/registrationDefinitions', guid(variables('mspOfferName')))]"
+      ]
+    }
+  ],
+  "outputs": {
+    "mspOfferName": {
+      "type": "string",
+      "value": "[format('Managed by {0}', variables('mspOfferName'))]"
+    },
+    "authorizations": {
+      "type": "array",
+      "value": "[variables('authorizations')]"
+    }
+  }
+}
