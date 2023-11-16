@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.23.1.45101",
-      "templateHash": "3230224549715618118"
+      "templateHash": "14026862248188195325"
     }
   },
   "variables": {
@@ -17,7 +17,7 @@
       "L2RimmOperators": "1a3c024d-2ce5-43e7-9c7c-26b17a604755"
     },
     "roleMap": {
-      "Contributor": "1a3c024d-2ce5-43e7-9c7c-26b17a604755"
+      "Contributor": "b24988ac-6180-42a0-ab88-20f7382dd24c"
     },
     "authorizations": [
       {
