@@ -8,6 +8,16 @@
 
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fallieddigital.github.io%2FAzureLighthouseOnboard%2FSOC-subscription-active.json)
 
+
+## RIMM Full Contributor Access
+
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fallieddigital.github.io%2FAzureLighthouseOnboard%2FRIMM-subscription-Contributor.json)
+
+## EM Bastion Reader Access
+
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fallieddigital.github.io%2FAzureLighthouseOnboard%2FEM-subscription-Reader.json)
+
+
 ## Default VM Test
 
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#blade/Microsoft_Azure_CreateUIDef/CustomDeploymentBlade/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fallieddigital%2FAzureLighthouseOnboard%2Fmain%2Fmodules%2FdefaultVM.json/uiFormDefinitionUri/https%3A%2F%2Fraw.githubusercontent.com%2Fallieddigital%2FAzureLighthouseOnboard%2Fmain%2Fmodules%2FdefaultVM.ui.json)
