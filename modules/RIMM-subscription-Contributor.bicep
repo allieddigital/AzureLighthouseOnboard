@@ -14,7 +14,7 @@ var groupMap = {
 }
 
 var roleMap = {
-  Contributor: '1a3c024d-2ce5-43e7-9c7c-26b17a604755'
+  Contributor: 'b24988ac-6180-42a0-ab88-20f7382dd24c'
 }
 
 @description('Specify an array of objects, containing tuples of Azure Active Directory principalId, a Azure roleDefinitionId, and an optional principalIdDisplayName. The roleDefinition specified is granted to the principalId in the provider\'s Active Directory and the principalIdDisplayName is visible to customers.')
