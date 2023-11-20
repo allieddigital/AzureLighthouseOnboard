@@ -22,6 +22,7 @@ var roleMap = {
   LogicAppContributor: '87a39d53-fc1b-424a-814c-f7e04687dc9e'
   WorkbookContributor: 'e8ddcd69-c73f-4f9f-9844-4100522f16ad'
   SecurityReader: '39bc4728-0917-49c7-9d2c-d95423bc2eb4'
+  SupportRequestContributor: 'cfd33db0-3dd1-45e3-aa9d-cdbdf3b6f24e'
 }
 
 @description('Specify an array of objects, containing tuples of Azure Active Directory principalId, a Azure roleDefinitionId, and an optional principalIdDisplayName. The roleDefinition specified is granted to the principalId in the provider\'s Active Directory and the principalIdDisplayName is visible to customers.')
@@ -35,6 +36,11 @@ var authorizations = [
     principalId: groupMap.L1SocOperators
     principalIdDisplayName: 'SOC Level 1 Operators'
     roleDefinitionId: roleMap.MicrosoftSentinelResponder
+  }
+  {
+    principalId: groupMap.L1SocOperators
+    principalIdDisplayName: 'SOC Level 1 Operators'
+    roleDefinitionId: roleMap.SupportRequestContributor
   }
   {
     principalId: groupMap.L2SocOperators
@@ -70,6 +76,11 @@ var authorizations = [
     principalId: groupMap.L2SocOperators
     principalIdDisplayName: 'SOC Level 2 Operators'
     roleDefinitionId: roleMap.SecurityReader
+  }
+  {
+    principalId: groupMap.L2SocOperators
+    principalIdDisplayName: 'SOC Level 2 Operators'
+    roleDefinitionId: roleMap.SupportRequestContributor
   }
 ]
 
