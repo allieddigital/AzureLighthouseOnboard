@@ -48,8 +48,8 @@ var authorizations = [
 
   // SOC L2
   {
-    principalId: groupMap.L1SocOperators
-    principalIdDisplayName: 'SOC Level 1 Operators'
+    principalId: groupMap.L2SocOperators
+    principalIdDisplayName: 'SOC Level 2 Operators'
     roleDefinitionId: roleMap.MonitoringContributor
   }
   {
