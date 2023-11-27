@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.23.1.45101",
-      "templateHash": "7292060303344095328"
+      "templateHash": "780099195617283448"
     }
   },
   "variables": {
@@ -46,8 +46,8 @@
         "roleDefinitionId": "[variables('roleMap').SupportRequestContributor]"
       },
       {
-        "principalId": "[variables('groupMap').L1SocOperators]",
-        "principalIdDisplayName": "SOC Level 1 Operators",
+        "principalId": "[variables('groupMap').L2SocOperators]",
+        "principalIdDisplayName": "SOC Level 2 Operators",
         "roleDefinitionId": "[variables('roleMap').MonitoringContributor]"
       },
       {
