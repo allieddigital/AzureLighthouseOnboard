@@ -6,6 +6,9 @@ on:
       - main  # Set a branch to deploy
   pull_request:
 
+defaults:
+  run:
+    shell: pwsh
 jobs:
   deploy:
     runs-on: ubuntu-20.04
@@ -17,10 +20,22 @@ jobs:
         uses: anthony-c-martin/setup-bicep@v0.1
 
       - name: Build Bicep
-        run: bicep build ./modules/SOC-subscription-active.bicep --outdir out
+        run: bicep build ./modules/SOC.bicep --outdir out
+
+      - name: Create MG Template
+        run: |
+          Copy-Item out/SOC.json ./modules/SOC.json
+          (Get-Content -Raw out/SOC.json).Replace('subscription','managementGroup')
+          | Set-Content ./modules/SOC-mg.json
 
       - name: Build Bicep
-        run: bicep build ./modules/RIMM-subscription-Contributor.bicep --outdir out
+        run: bicep build ./modules/RIMM.bicep --outdir out
+
+      - name: Create MG Template
+        run: |
+          Copy-Item out/RIMM.json ./modules/RIMM.json
+          (Get-Content -Raw out/RIMM.json).Replace('subscription','managementGroup')
+          | Set-Content ./modules/RIMM-mg.json
 
       - name: Build Bicep
         run: bicep build ./modules/EM-subscription-Reader.bicep --outdir out
@@ -30,4 +45,3 @@ jobs:
         with:
           branch: gh-pages # The branch the action should deploy to.
           folder: out # The folder the action should deploy.
-#

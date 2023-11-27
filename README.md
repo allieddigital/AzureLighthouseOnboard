@@ -4,19 +4,33 @@
 
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fallieddigital%2FAzureLighthouseOnboard%2Fmain%2Fmodules%2Fsubscription-managing-tenant-approvers.bicep)
 
-## Azure Sentinel SOC Services
+## Azure Sentinel SOC Management
 
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fallieddigital.github.io%2FAzureLighthouseOnboard%2FSOC-subscription-active.json)
+### Subscription
 
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fallieddigital.github.io%2FAzureLighthouseOnboard%2FSOC.json)
+
+### Management Group
+
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fallieddigital.github.io%2FAzureLighthouseOnboard%2FSOC-mg.json)
+
+## Azure Sentinel SOC Playbook Operation
+
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fallieddigital.github.io%2FAzureLighthouseOnboard%2FSOC-rg.json)
 
 ## RIMM Full Contributor Access
 
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fallieddigital.github.io%2FAzureLighthouseOnboard%2FRIMM-subscription-Contributor.json)
+### Subscription
+
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fallieddigital.github.io%2FAzureLighthouseOnboard%2FRIMM.json)
+
+### Management Group
+
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fallieddigital.github.io%2FAzureLighthouseOnboard%2FRIMM-mg.json)
 
 ## EM Bastion Reader Access
 
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fallieddigital.github.io%2FAzureLighthouseOnboard%2FEM-subscription-Reader.json)
-
 
 ## Default VM Test
 

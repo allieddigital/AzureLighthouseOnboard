@@ -17,16 +17,19 @@ var roleMap = {
   MicrosoftSentinelReader: '8d289c81-5878-46d4-8554-54e1e3d8b5cb'
   MicrosoftSentinelResponder: '3e150937-b8fe-4cfb-8069-0eaf05ecd056'
   MicrosoftSentinelContributor: 'ab8e14d6-4a74-4a29-9ba8-549422addade'
-  MicrosoftSentinelAutomationContributor: 'f4c81013-99ee-4d62-a7ee-b3f1f648599a'
-  MicrosoftSentinelPlaybookOperator: '51d6186e-6489-4900-b93f-92e23144cca5'
-  LogicAppContributor: '87a39d53-fc1b-424a-814c-f7e04687dc9e'
-  WorkbookContributor: 'e8ddcd69-c73f-4f9f-9844-4100522f16ad'
   SecurityReader: '39bc4728-0917-49c7-9d2c-d95423bc2eb4'
   SupportRequestContributor: 'cfd33db0-3dd1-45e3-aa9d-cdbdf3b6f24e'
+  MonitoringContributor: '749f88d5-cbae-40b8-bcfc-e573ddc772fa'
 }
 
 @description('Specify an array of objects, containing tuples of Azure Active Directory principalId, a Azure roleDefinitionId, and an optional principalIdDisplayName. The roleDefinition specified is granted to the principalId in the provider\'s Active Directory and the principalIdDisplayName is visible to customers.')
 var authorizations = [
+  // SOC L1
+  {
+    principalId: groupMap.L1SocOperators
+    principalIdDisplayName: 'SOC Level 1 Operators'
+    roleDefinitionId: roleMap.SecurityReader
+  }
   {
     principalId: groupMap.L1SocOperators
     principalIdDisplayName: 'SOC Level 1 Operators'
@@ -42,45 +45,17 @@ var authorizations = [
     principalIdDisplayName: 'SOC Level 1 Operators'
     roleDefinitionId: roleMap.SupportRequestContributor
   }
+
+  // SOC L2
   {
-    principalId: groupMap.L2SocOperators
-    principalIdDisplayName: 'SOC Level 2 Operators'
-    roleDefinitionId: roleMap.MicrosoftSentinelReader
+    principalId: groupMap.L1SocOperators
+    principalIdDisplayName: 'SOC Level 1 Operators'
+    roleDefinitionId: roleMap.MonitoringContributor
   }
   {
     principalId: groupMap.L2SocOperators
     principalIdDisplayName: 'SOC Level 2 Operators'
     roleDefinitionId: roleMap.MicrosoftSentinelContributor
-  }
-  {
-    principalId: groupMap.L2SocOperators
-    principalIdDisplayName: 'SOC Level 2 Operators'
-    roleDefinitionId: roleMap.MicrosoftSentinelAutomationContributor
-  }
-  {
-    principalId: groupMap.L2SocOperators
-    principalIdDisplayName: 'SOC Level 2 Operators'
-    roleDefinitionId: roleMap.MicrosoftSentinelPlaybookOperator
-  }
-  {
-    principalId: groupMap.L2SocOperators
-    principalIdDisplayName: 'SOC Level 2 Operators'
-    roleDefinitionId: roleMap.LogicAppContributor
-  }
-  {
-    principalId: groupMap.L2SocOperators
-    principalIdDisplayName: 'SOC Level 2 Operators'
-    roleDefinitionId: roleMap.WorkbookContributor
-  }
-  {
-    principalId: groupMap.L2SocOperators
-    principalIdDisplayName: 'SOC Level 2 Operators'
-    roleDefinitionId: roleMap.SecurityReader
-  }
-  {
-    principalId: groupMap.L2SocOperators
-    principalIdDisplayName: 'SOC Level 2 Operators'
-    roleDefinitionId: roleMap.SupportRequestContributor
   }
 ]
 
