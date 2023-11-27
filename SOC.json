@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.23.1.45101",
-      "templateHash": "17338602766059813871"
+      "templateHash": "7292060303344095328"
     }
   },
   "variables": {
@@ -20,14 +20,16 @@
       "MicrosoftSentinelReader": "8d289c81-5878-46d4-8554-54e1e3d8b5cb",
       "MicrosoftSentinelResponder": "3e150937-b8fe-4cfb-8069-0eaf05ecd056",
       "MicrosoftSentinelContributor": "ab8e14d6-4a74-4a29-9ba8-549422addade",
-      "MicrosoftSentinelAutomationContributor": "f4c81013-99ee-4d62-a7ee-b3f1f648599a",
-      "MicrosoftSentinelPlaybookOperator": "51d6186e-6489-4900-b93f-92e23144cca5",
-      "LogicAppContributor": "87a39d53-fc1b-424a-814c-f7e04687dc9e",
-      "WorkbookContributor": "e8ddcd69-c73f-4f9f-9844-4100522f16ad",
       "SecurityReader": "39bc4728-0917-49c7-9d2c-d95423bc2eb4",
-      "SupportRequestContributor": "cfd33db0-3dd1-45e3-aa9d-cdbdf3b6f24e"
+      "SupportRequestContributor": "cfd33db0-3dd1-45e3-aa9d-cdbdf3b6f24e",
+      "MonitoringContributor": "749f88d5-cbae-40b8-bcfc-e573ddc772fa"
     },
     "authorizations": [
+      {
+        "principalId": "[variables('groupMap').L1SocOperators]",
+        "principalIdDisplayName": "SOC Level 1 Operators",
+        "roleDefinitionId": "[variables('roleMap').SecurityReader]"
+      },
       {
         "principalId": "[variables('groupMap').L1SocOperators]",
         "principalIdDisplayName": "SOC Level 1 Operators",
@@ -44,44 +46,14 @@
         "roleDefinitionId": "[variables('roleMap').SupportRequestContributor]"
       },
       {
-        "principalId": "[variables('groupMap').L2SocOperators]",
-        "principalIdDisplayName": "SOC Level 2 Operators",
-        "roleDefinitionId": "[variables('roleMap').MicrosoftSentinelReader]"
+        "principalId": "[variables('groupMap').L1SocOperators]",
+        "principalIdDisplayName": "SOC Level 1 Operators",
+        "roleDefinitionId": "[variables('roleMap').MonitoringContributor]"
       },
       {
         "principalId": "[variables('groupMap').L2SocOperators]",
         "principalIdDisplayName": "SOC Level 2 Operators",
         "roleDefinitionId": "[variables('roleMap').MicrosoftSentinelContributor]"
-      },
-      {
-        "principalId": "[variables('groupMap').L2SocOperators]",
-        "principalIdDisplayName": "SOC Level 2 Operators",
-        "roleDefinitionId": "[variables('roleMap').MicrosoftSentinelAutomationContributor]"
-      },
-      {
-        "principalId": "[variables('groupMap').L2SocOperators]",
-        "principalIdDisplayName": "SOC Level 2 Operators",
-        "roleDefinitionId": "[variables('roleMap').MicrosoftSentinelPlaybookOperator]"
-      },
-      {
-        "principalId": "[variables('groupMap').L2SocOperators]",
-        "principalIdDisplayName": "SOC Level 2 Operators",
-        "roleDefinitionId": "[variables('roleMap').LogicAppContributor]"
-      },
-      {
-        "principalId": "[variables('groupMap').L2SocOperators]",
-        "principalIdDisplayName": "SOC Level 2 Operators",
-        "roleDefinitionId": "[variables('roleMap').WorkbookContributor]"
-      },
-      {
-        "principalId": "[variables('groupMap').L2SocOperators]",
-        "principalIdDisplayName": "SOC Level 2 Operators",
-        "roleDefinitionId": "[variables('roleMap').SecurityReader]"
-      },
-      {
-        "principalId": "[variables('groupMap').L2SocOperators]",
-        "principalIdDisplayName": "SOC Level 2 Operators",
-        "roleDefinitionId": "[variables('roleMap').SupportRequestContributor]"
       }
     ]
   },
