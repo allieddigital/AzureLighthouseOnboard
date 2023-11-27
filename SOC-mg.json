@@ -1,0 +1,94 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2018-05-01/managementGroupDeploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.23.1.45101",
+      "templateHash": "780099195617283448"
+    }
+  },
+  "variables": {
+    "mspOfferName": "Security Operations Center - Azure Sentinel Management",
+    "mspOfferDescription": "Enables Allied Digital SOC operations to manage and monitor your Azure Sentinel environment",
+    "managedByTenantId": "2f46c040-48e3-4eb8-8fbf-418417f64401",
+    "groupMap": {
+      "L1SocOperators": "a2b7313e-013c-4242-bfa5-bee22442a262",
+      "L2SocOperators": "b933b7fa-b3b5-47d8-a0cb-1b92b952d0eb"
+    },
+    "roleMap": {
+      "MicrosoftSentinelReader": "8d289c81-5878-46d4-8554-54e1e3d8b5cb",
+      "MicrosoftSentinelResponder": "3e150937-b8fe-4cfb-8069-0eaf05ecd056",
+      "MicrosoftSentinelContributor": "ab8e14d6-4a74-4a29-9ba8-549422addade",
+      "SecurityReader": "39bc4728-0917-49c7-9d2c-d95423bc2eb4",
+      "SupportRequestContributor": "cfd33db0-3dd1-45e3-aa9d-cdbdf3b6f24e",
+      "MonitoringContributor": "749f88d5-cbae-40b8-bcfc-e573ddc772fa"
+    },
+    "authorizations": [
+      {
+        "principalId": "[variables('groupMap').L1SocOperators]",
+        "principalIdDisplayName": "SOC Level 1 Operators",
+        "roleDefinitionId": "[variables('roleMap').SecurityReader]"
+      },
+      {
+        "principalId": "[variables('groupMap').L1SocOperators]",
+        "principalIdDisplayName": "SOC Level 1 Operators",
+        "roleDefinitionId": "[variables('roleMap').MicrosoftSentinelReader]"
+      },
+      {
+        "principalId": "[variables('groupMap').L1SocOperators]",
+        "principalIdDisplayName": "SOC Level 1 Operators",
+        "roleDefinitionId": "[variables('roleMap').MicrosoftSentinelResponder]"
+      },
+      {
+        "principalId": "[variables('groupMap').L1SocOperators]",
+        "principalIdDisplayName": "SOC Level 1 Operators",
+        "roleDefinitionId": "[variables('roleMap').SupportRequestContributor]"
+      },
+      {
+        "principalId": "[variables('groupMap').L2SocOperators]",
+        "principalIdDisplayName": "SOC Level 2 Operators",
+        "roleDefinitionId": "[variables('roleMap').MonitoringContributor]"
+      },
+      {
+        "principalId": "[variables('groupMap').L2SocOperators]",
+        "principalIdDisplayName": "SOC Level 2 Operators",
+        "roleDefinitionId": "[variables('roleMap').MicrosoftSentinelContributor]"
+      }
+    ]
+  },
+  "resources": [
+    {
+      "type": "Microsoft.ManagedServices/registrationDefinitions",
+      "apiVersion": "2022-10-01",
+      "name": "[guid(variables('mspOfferName'))]",
+      "properties": {
+        "registrationDefinitionName": "[variables('mspOfferName')]",
+        "description": "[variables('mspOfferDescription')]",
+        "managedByTenantId": "[variables('managedByTenantId')]",
+        "authorizations": "[variables('authorizations')]"
+      }
+    },
+    {
+      "type": "Microsoft.ManagedServices/registrationAssignments",
+      "apiVersion": "2022-10-01",
+      "name": "[guid(variables('mspOfferName'))]",
+      "properties": {
+        "registrationDefinitionId": "[managementGroupResourceId('Microsoft.ManagedServices/registrationDefinitions', guid(variables('mspOfferName')))]"
+      },
+      "dependsOn": [
+        "[managementGroupResourceId('Microsoft.ManagedServices/registrationDefinitions', guid(variables('mspOfferName')))]"
+      ]
+    }
+  ],
+  "outputs": {
+    "mspOfferName": {
+      "type": "string",
+      "value": "[format('Managed by {0}', variables('mspOfferName'))]"
+    },
+    "authorizations": {
+      "type": "array",
+      "value": "[variables('authorizations')]"
+    }
+  }
+}
