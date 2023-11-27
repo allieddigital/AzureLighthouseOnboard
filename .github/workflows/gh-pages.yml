@@ -19,23 +19,23 @@ jobs:
       - name: Setup Bicep
         uses: anthony-c-martin/setup-bicep@v0.1
 
-      - name: Build Bicep
+      - name: Build SOC Bicep
         run: bicep build ./modules/SOC.bicep --outdir out
 
-      - name: Create MG Template
+      - name: Create SOC MG Template
         run: |
           Copy-Item out/SOC.json ./modules/SOC.json
           (Get-Content -Raw out/SOC.json).Replace('subscription','managementGroup')
-          | Set-Content ./modules/SOC-mg.json
+          | Set-Content out/SOC-mg.json
 
-      - name: Build Bicep
+      - name: Build RIMM Bicep
         run: bicep build ./modules/RIMM.bicep --outdir out
 
-      - name: Create MG Template
+      - name: Create RIMM MG Template
         run: |
           Copy-Item out/RIMM.json ./modules/RIMM.json
           (Get-Content -Raw out/RIMM.json).Replace('subscription','managementGroup')
-          | Set-Content ./modules/RIMM-mg.json
+          | Set-Content out/RIMM-mg.json
 
       - name: Build Bicep
         run: bicep build ./modules/EM-subscription-Reader.bicep --outdir out
