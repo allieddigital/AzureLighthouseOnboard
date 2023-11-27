@@ -1,5 +1,3 @@
-targetScope = 'resourceGroup'
-
 @description('Specify a unique name for your offer')
 var mspOfferName = 'Security Operations Center - Azure Sentinel Playbook Management'
 
@@ -29,6 +27,7 @@ var authorizations = [
 
 resource mspRegistration 'Microsoft.ManagedServices/registrationDefinitions@2022-10-01' = {
   name: guid(mspOfferName)
+  scope: resourceGroup()
   properties: {
     registrationDefinitionName: mspOfferName
     description: mspOfferDescription
@@ -39,6 +38,7 @@ resource mspRegistration 'Microsoft.ManagedServices/registrationDefinitions@2022
 
 resource mspAssignment 'Microsoft.ManagedServices/registrationAssignments@2022-10-01' = {
   name: guid(mspOfferName)
+  scope: resourceGroup()
   properties: {
     registrationDefinitionId: mspRegistration.id
   }
