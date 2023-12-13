@@ -1,0 +1,38 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.23.1.45101",
+      "templateHash": "1645562086815208987"
+    }
+  },
+  "parameters": {
+    "mspRegistrationId": {
+      "type": "string",
+      "metadata": {
+        "description": "The registration ID to assign"
+      }
+    }
+  },
+  "variables": {
+    "assignmentId": "[guid(parameters('mspRegistrationId'), resourceGroup().id)]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.ManagedServices/registrationAssignments",
+      "apiVersion": "2022-10-01",
+      "name": "[variables('assignmentId')]",
+      "properties": {
+        "registrationDefinitionId": "[parameters('mspRegistrationId')]"
+      }
+    }
+  ],
+  "outputs": {
+    "assignment": {
+      "type": "object",
+      "value": "[reference(resourceId('Microsoft.ManagedServices/registrationAssignments', variables('assignmentId')), '2022-10-01', 'full')]"
+    }
+  }
+}
