@@ -1,3 +1,8 @@
+targetScope = 'subscription'
+
+@description('Specify the name of the resource group where the SOC is permitted to deploy and manage playbooks and supporting Logic Apps')
+param resourceGroupName string
+
 @description('Specify a unique name for your offer')
 var mspOfferName = 'Security Operations Center - Azure Sentinel Playbook Management'
 
@@ -17,7 +22,6 @@ var roleMap = {
 
 @description('Specify an array of objects, containing tuples of Azure Active Directory principalId, a Azure roleDefinitionId, and an optional principalIdDisplayName. The roleDefinition specified is granted to the principalId in the provider\'s Active Directory and the principalIdDisplayName is visible to customers.')
 var authorizations = [
-  // SOC L2
   {
     principalId: groupMap.L2SocOperators
     principalIdDisplayName: 'SOC Level 2 Operators'
@@ -27,7 +31,6 @@ var authorizations = [
 
 resource mspRegistration 'Microsoft.ManagedServices/registrationDefinitions@2022-10-01' = {
   name: guid(mspOfferName)
-  scope: resourceGroup()
   properties: {
     registrationDefinitionName: mspOfferName
     description: mspOfferDescription
@@ -36,11 +39,11 @@ resource mspRegistration 'Microsoft.ManagedServices/registrationDefinitions@2022
   }
 }
 
-resource mspAssignment 'Microsoft.ManagedServices/registrationAssignments@2022-10-01' = {
-  name: guid(mspOfferName)
-  scope: resourceGroup()
-  properties: {
-    registrationDefinitionId: mspRegistration.id
+module socRgAssignment 'SOC-playbook-rg.bicep' = {
+  name: 'SOC_Playbook_Management_Access'
+  scope: resourceGroup(resourceGroupName)
+  params: {
+    mspRegistrationId: mspRegistration.id
   }
 }
 

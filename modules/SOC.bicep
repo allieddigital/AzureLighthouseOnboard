@@ -2,7 +2,6 @@ targetScope = 'subscription'
 
 @description('Specify a unique name for your offer')
 var mspOfferName = 'Security Operations Center - Azure Sentinel Management'
-
 var mspOfferDescription = 'Enables Allied Digital SOC operations to manage and monitor your Azure Sentinel environment'
 
 @description('Specify the tenant id of the Managed Service Provider')
