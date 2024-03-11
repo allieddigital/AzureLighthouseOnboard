@@ -4,8 +4,8 @@
   "metadata": {
     "_generator": {
       "name": "bicep",
-      "version": "0.23.1.45101",
-      "templateHash": "1645562086815208987"
+      "version": "0.25.53.49325",
+      "templateHash": "12345770267123189842"
     }
   },
   "parameters": {
@@ -13,6 +13,19 @@
       "type": "string",
       "metadata": {
         "description": "The registration ID to assign"
+      }
+    },
+    "customerAzureSecurityInsightsId": {
+      "type": "string",
+      "metadata": {
+        "description": "The customer Azure Security Insights ID required for multi-tenant playbook automation."
+      }
+    },
+    "MicrosoftSentinelAutomationContributorRoleId": {
+      "type": "string",
+      "defaultValue": "f4c81013-99ee-4d62-a7ee-b3f1f648599a",
+      "metadata": {
+        "description": "The role used for Microsoft Sentinel Automation Contributor. This is usually a fixed value"
       }
     }
   },
@@ -26,6 +39,16 @@
       "name": "[variables('assignmentId')]",
       "properties": {
         "registrationDefinitionId": "[parameters('mspRegistrationId')]"
+      }
+    },
+    {
+      "type": "Microsoft.Authorization/roleAssignments",
+      "apiVersion": "2022-04-01",
+      "name": "[guid(parameters('customerAzureSecurityInsightsId'), parameters('MicrosoftSentinelAutomationContributorRoleId'))]",
+      "properties": {
+        "principalId": "[parameters('customerAzureSecurityInsightsId')]",
+        "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', parameters('MicrosoftSentinelAutomationContributorRoleId'))]",
+        "principalType": "ServicePrincipal"
       }
     }
   ],
