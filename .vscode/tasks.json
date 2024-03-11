@@ -4,7 +4,7 @@
         {
             "label": "Build Bicep",
             "type": "shell",
-            "command": "bicep build ${file} -o ${workspaceRoot}/out",
+            "command": "bicep build --outdir ${workspaceRoot}/out ${file}",
             "group": {
                 "kind": "build",
                 "isDefault": true
