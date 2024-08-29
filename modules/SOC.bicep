@@ -72,7 +72,7 @@ var authorizations = [
 ]
 
 resource mspRegistration 'Microsoft.ManagedServices/registrationDefinitions@2022-10-01' = {
-  name: guid(mspOfferName)
+  name: '${mspOfferName} - ${managedByTenantId}'
   properties: {
     registrationDefinitionName: mspOfferName
     description: mspOfferDescription
@@ -82,7 +82,7 @@ resource mspRegistration 'Microsoft.ManagedServices/registrationDefinitions@2022
 }
 
 resource mspAssignment 'Microsoft.ManagedServices/registrationAssignments@2022-10-01' = {
-  name: guid(mspOfferName)
+  name: mspRegistration.name
   properties: {
     registrationDefinitionId: mspRegistration.id
   }
