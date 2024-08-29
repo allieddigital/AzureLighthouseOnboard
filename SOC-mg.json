@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.29.47.4906",
-      "templateHash": "10905442500248249818"
+      "templateHash": "4111629362585695484"
     }
   },
   "parameters": {
@@ -15,18 +15,13 @@
       "metadata": {
         "description": "Specify the name of the resource group where the SOC is permitted to deploy Sentinel supporting solutions. This is typically the same resource group as the Sentinel workspace but you may also opt for a separate resource group. If left empty, the SOC solution setup will be skipped"
       }
-    },
-    "customerAzureSecurityInsightsId": {
-      "type": "string",
-      "metadata": {
-        "description": "We need your Azure Security Insights Enterprise Application Object ID to enable runbook access and restrictions prevent us from discovering this automatically for you. To find it, go to https://portal.azure.com/#view/Microsoft_AAD_IAM/StartboardApplicationsMenuBlade/~/AppAppsPreview, remove the \"Application Type == Enterprise Applications\" filter, and then type \"Azure Security Insights\" into the filter box, and copy the Object ID (Not the Application ID) here. You can also run the following Azure PowerShell command: (Get-AzADServicePrincipal -Filter \"DisplayName eq 'Azure Security Insights'\").Id "
-      }
     }
   },
   "variables": {
     "mspOfferName": "Security Operations Center - Azure Sentinel Management",
     "mspOfferDescription": "Enables SOC operations to manage and monitor your Azure Sentinel environment",
     "managedByTenantId": "2f46c040-48e3-4eb8-8fbf-418417f64401",
+    "managedByTenantSecurityInsightsObjectId": "53769958-144f-4a47-9e8e-8dbc823fb622",
     "groupMap": {
       "L1SocOperators": "a2b7313e-013c-4242-bfa5-bee22442a262",
       "L2SocOperators": "b933b7fa-b3b5-47d8-a0cb-1b92b952d0eb"
@@ -122,8 +117,8 @@
           "managedByTenantId": {
             "value": "[variables('managedByTenantId')]"
           },
-          "customerAzureSecurityInsightsId": {
-            "value": "[parameters('customerAzureSecurityInsightsId')]"
+          "managedByTenantSecurityInsightsObjectId": {
+            "value": "[variables('managedByTenantSecurityInsightsObjectId')]"
           },
           "socManagementGroupId": {
             "value": "[variables('groupMap').L2SocOperators]"
@@ -139,7 +134,7 @@
             "_generator": {
               "name": "bicep",
               "version": "0.29.47.4906",
-              "templateHash": "9938615702989515082"
+              "templateHash": "4334525259406570745"
             }
           },
           "parameters": {
@@ -155,7 +150,7 @@
                 "description": "The group that performs management of the RG"
               }
             },
-            "customerAzureSecurityInsightsId": {
+            "managedByTenantSecurityInsightsObjectId": {
               "type": "string",
               "metadata": {
                 "description": "The customer Azure Security Insights ID required for multi-tenant playbook automation."
@@ -193,7 +188,7 @@
                 ]
               },
               {
-                "principalId": "[parameters('customerAzureSecurityInsightsId')]",
+                "principalId": "[parameters('managedByTenantSecurityInsightsObjectId')]",
                 "roleDefinitionId": "[variables('roleMap').MicrosoftSentinelAutomationContributor]",
                 "principalIdDisplayName": "Managed Service Provider Azure Security Insights App"
               }
@@ -224,12 +219,6 @@
                 "parameters": {
                   "mspRegistrationId": {
                     "value": "[managementGroupResourceId('Microsoft.ManagedServices/registrationDefinitions', guid(variables('mspOfferName')))]"
-                  },
-                  "customerAzureSecurityInsightsId": {
-                    "value": "[parameters('customerAzureSecurityInsightsId')]"
-                  },
-                  "MicrosoftSentinelAutomationContributorRoleId": {
-                    "value": "[variables('roleMap').MicrosoftSentinelAutomationContributor]"
                   }
                 },
                 "template": {
@@ -239,7 +228,7 @@
                     "_generator": {
                       "name": "bicep",
                       "version": "0.29.47.4906",
-                      "templateHash": "15799202475390856634"
+                      "templateHash": "6089756297918888951"
                     }
                   },
                   "parameters": {
@@ -247,19 +236,6 @@
                       "type": "string",
                       "metadata": {
                         "description": "The registration ID to assign"
-                      }
-                    },
-                    "customerAzureSecurityInsightsId": {
-                      "type": "string",
-                      "metadata": {
-                        "description": "The customer Azure Security Insights ID required for multi-tenant playbook automation."
-                      }
-                    },
-                    "MicrosoftSentinelAutomationContributorRoleId": {
-                      "type": "string",
-                      "defaultValue": "f4c81013-99ee-4d62-a7ee-b3f1f648599a",
-                      "metadata": {
-                        "description": "The role used for Microsoft Sentinel Automation Contributor. This is usually a fixed value"
                       }
                     }
                   },
@@ -273,16 +249,6 @@
                       "name": "[variables('assignmentId')]",
                       "properties": {
                         "registrationDefinitionId": "[parameters('mspRegistrationId')]"
-                      }
-                    },
-                    {
-                      "type": "Microsoft.Authorization/roleAssignments",
-                      "apiVersion": "2022-04-01",
-                      "name": "[guid(parameters('customerAzureSecurityInsightsId'), parameters('MicrosoftSentinelAutomationContributorRoleId'))]",
-                      "properties": {
-                        "principalId": "[parameters('customerAzureSecurityInsightsId')]",
-                        "roleDefinitionId": "[managementGroupResourceId('Microsoft.Authorization/roleDefinitions', parameters('MicrosoftSentinelAutomationContributorRoleId'))]",
-                        "principalType": "ServicePrincipal"
                       }
                     }
                   ],
