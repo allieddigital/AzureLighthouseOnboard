@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.29.47.4906",
-      "templateHash": "4111629362585695484"
+      "templateHash": "6483361088255435481"
     }
   },
   "parameters": {
@@ -134,7 +134,7 @@
             "_generator": {
               "name": "bicep",
               "version": "0.29.47.4906",
-              "templateHash": "4334525259406570745"
+              "templateHash": "3557587164994579349"
             }
           },
           "parameters": {
@@ -198,7 +198,7 @@
             {
               "type": "Microsoft.ManagedServices/registrationDefinitions",
               "apiVersion": "2022-10-01",
-              "name": "[guid(variables('mspOfferName'))]",
+              "name": "[format('{0} - Solutions - {1}', variables('mspOfferName'), parameters('managedByTenantId'))]",
               "properties": {
                 "registrationDefinitionName": "[variables('mspOfferName')]",
                 "description": "[variables('mspOfferDescription')]",
@@ -209,7 +209,7 @@
             {
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
-              "name": "SOC_Playbook_Management_Access",
+              "name": "[format('{0} - Solutions - {1}', variables('mspOfferName'), parameters('managedByTenantId'))]",
               "resourceGroup": "[parameters('resourceGroupName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -218,7 +218,7 @@
                 "mode": "Incremental",
                 "parameters": {
                   "mspRegistrationId": {
-                    "value": "[managementGroupResourceId('Microsoft.ManagedServices/registrationDefinitions', guid(variables('mspOfferName')))]"
+                    "value": "[managementGroupResourceId('Microsoft.ManagedServices/registrationDefinitions', format('{0} - Solutions - {1}', variables('mspOfferName'), parameters('managedByTenantId')))]"
                   }
                 },
                 "template": {
@@ -261,7 +261,7 @@
                 }
               },
               "dependsOn": [
-                "[managementGroupResourceId('Microsoft.ManagedServices/registrationDefinitions', guid(variables('mspOfferName')))]"
+                "[managementGroupResourceId('Microsoft.ManagedServices/registrationDefinitions', format('{0} - Solutions - {1}', variables('mspOfferName'), parameters('managedByTenantId')))]"
               ]
             }
           ]
