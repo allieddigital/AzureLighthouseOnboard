@@ -53,7 +53,7 @@ var authorizations = [
 
 // Registers the SOC offer at subscription scope. We cannot register this at resource group scope
 resource mspRegistration 'Microsoft.ManagedServices/registrationDefinitions@2022-10-01' = {
-  name: '${mspOfferName} - Solutions - ${managedByTenantId}'
+  name: guid('${mspOfferName}${managedByTenantId}${resourceGroupName}')
   properties: {
     registrationDefinitionName: mspOfferName
     description: mspOfferDescription
