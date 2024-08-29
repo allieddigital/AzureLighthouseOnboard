@@ -6,7 +6,7 @@
 
 ## Azure Sentinel SOC Deployment
 
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fgithub.com%2Fallieddigital%2FAzureLighthouseOnboard%2Freleases%2Flatest%2Fdownload%2FSOC.json)
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fallieddigital.github.io%2FAzureLighthouseOnboard%2FSOC.json)
 
 ## RIMM Full Contributor Access
 
