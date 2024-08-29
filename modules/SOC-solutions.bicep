@@ -8,7 +8,7 @@ param resourceGroupName string
 param socManagementGroupId string
 
 @description('The customer Azure Security Insights ID required for multi-tenant playbook automation.')
-param customerAzureSecurityInsightsId string
+param managedByTenantSecurityInsightsObjectId string
 
 var mspOfferName = 'Security Operations Center - Azure Sentinel Management - Solutions'
 var mspOfferDescription = 'Enables SOC operations to deploy solutions to a particular resource group'
@@ -45,7 +45,7 @@ var authorizations = [
     ]
   }
   {
-    principalId: customerAzureSecurityInsightsId
+    principalId: managedByTenantSecurityInsightsObjectId
     roleDefinitionId: roleMap.MicrosoftSentinelAutomationContributor
     principalIdDisplayName: 'Managed Service Provider Azure Security Insights App'
   }
@@ -68,7 +68,5 @@ module socRgAssignment 'SOC-solutions-rg.bicep' = {
   scope: resourceGroup(resourceGroupName)
   params: {
     mspRegistrationId: mspRegistration.id
-    customerAzureSecurityInsightsId: customerAzureSecurityInsightsId
-    MicrosoftSentinelAutomationContributorRoleId: roleMap.MicrosoftSentinelAutomationContributor
   }
 }

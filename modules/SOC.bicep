@@ -3,12 +3,10 @@ targetScope = 'subscription'
 @description('Specify the name of the resource group where the SOC is permitted to deploy Sentinel supporting solutions. This is typically the same resource group as the Sentinel workspace but you may also opt for a separate resource group. If left empty, the SOC solution setup will be skipped')
 param ResourceGroupName string = ''
 
-@description('''We need your Azure Security Insights Enterprise Application Object ID to enable runbook access and restrictions prevent us from discovering this automatically for you. To find it, go to https://portal.azure.com/#view/Microsoft_AAD_IAM/StartboardApplicationsMenuBlade/~/AppAppsPreview, remove the "Application Type == Enterprise Applications" filter, and then type "Azure Security Insights" into the filter box, and copy the Object ID (Not the Application ID) here. You can also run the following Azure PowerShell command: (Get-AzADServicePrincipal -Filter "DisplayName eq 'Azure Security Insights'").Id ''')
-param customerAzureSecurityInsightsId string
-
 var mspOfferName = 'Security Operations Center - Azure Sentinel Management'
 var mspOfferDescription = 'Enables SOC operations to manage and monitor your Azure Sentinel environment'
 var managedByTenantId = '2f46c040-48e3-4eb8-8fbf-418417f64401'
+var managedByTenantSecurityInsightsObjectId = '53769958-144f-4a47-9e8e-8dbc823fb622'
 
 var groupMap = {
   L1SocOperators: 'a2b7313e-013c-4242-bfa5-bee22442a262'
@@ -94,7 +92,7 @@ module SOCSolutions 'SOC-solutions.bicep' = if (ResourceGroupName != '') {
   name: '${deployment().name}-Solutions'
   params: {
     managedByTenantId: managedByTenantId
-    customerAzureSecurityInsightsId: customerAzureSecurityInsightsId
+    managedByTenantSecurityInsightsObjectId: managedByTenantSecurityInsightsObjectId
     socManagementGroupId: groupMap.L2SocOperators
     resourceGroupName: ResourceGroupName
   }
