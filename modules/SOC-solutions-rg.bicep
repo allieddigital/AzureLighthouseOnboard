@@ -11,6 +11,7 @@ param MicrosoftSentinelAutomationContributorRoleId string = 'f4c81013-99ee-4d62-
 
 var assignmentId = guid(mspRegistrationId, resourceGroup().id)
 
+// Associates the SOC Playbook Management registration with the resource group
 resource mspAssignment 'Microsoft.ManagedServices/registrationAssignments@2022-10-01' = {
   name: assignmentId
   properties: {
@@ -18,6 +19,7 @@ resource mspAssignment 'Microsoft.ManagedServices/registrationAssignments@2022-1
   }
 }
 
+// Enables the customer Azure Security Insights app to automate playbooks
 resource asiAssignment 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
   name: guid(customerAzureSecurityInsightsId, MicrosoftSentinelAutomationContributorRoleId)
   properties: {

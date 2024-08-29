@@ -1,10 +1,13 @@
 targetScope = 'subscription'
 
-@description('Specify a unique name for your offer')
-var mspOfferName = 'Security Operations Center - Azure Sentinel Management'
-var mspOfferDescription = 'Enables Allied Digital SOC operations to manage and monitor your Azure Sentinel environment'
+@description('Specify the name of the resource group where the SOC is permitted to deploy Sentinel supporting solutions. This is typically the same resource group as the Sentinel workspace but you may also opt for a separate resource group')
+param ResourceGroupName string
 
-@description('Specify the tenant id of the Managed Service Provider')
+@description('''We need your Azure Security Insights Enterprise Application Object ID to enable runbook access and restrictions prevent us from discovering this automatically for you. To find it, go to https://portal.azure.com/#view/Microsoft_AAD_IAM/StartboardApplicationsMenuBlade/~/AppAppsPreview, remove the "Application Type == Enterprise Applications" filter, and then type "Azure Security Insights" into the filter box, and copy the Object ID (Not the Application ID) here. You can also run the following Azure PowerShell command: (Get-AzADServicePrincipal -Filter "DisplayName eq 'Azure Security Insights'").Id ''')
+param customerAzureSecurityInsightsId string
+
+var mspOfferName = 'Security Operations Center - Azure Sentinel Management'
+var mspOfferDescription = 'Enables SOC operations to manage and monitor your Azure Sentinel environment'
 var managedByTenantId = '2f46c040-48e3-4eb8-8fbf-418417f64401'
 
 var groupMap = {
@@ -20,6 +23,7 @@ var roleMap = {
   SecurityReader: '39bc4728-0917-49c7-9d2c-d95423bc2eb4'
   SupportRequestContributor: 'cfd33db0-3dd1-45e3-aa9d-cdbdf3b6f24e'
   MonitoringContributor: '749f88d5-cbae-40b8-bcfc-e573ddc772fa'
+  ManagedServicesRegistrationAssignmentDeleteRole: '91c1777a-f3dc-4fae-b103-61d183457e46'
 }
 
 @description('Specify an array of objects, containing tuples of Azure Active Directory principalId, a Azure roleDefinitionId, and an optional principalIdDisplayName. The roleDefinition specified is granted to the principalId in the provider\'s Active Directory and the principalIdDisplayName is visible to customers.')
@@ -62,6 +66,11 @@ var authorizations = [
     principalIdDisplayName: 'SOC Level 2 Operators'
     roleDefinitionId: roleMap.MicrosoftSentinelContributor
   }
+  {
+    principalId: groupMap.L2SocOperators
+    principalIdDisplayName: 'SOC Level 2 Operators'
+    roleDefinitionId: roleMap.ManagedServicesRegistrationAssignmentDeleteRole
+  }
 ]
 
 resource mspRegistration 'Microsoft.ManagedServices/registrationDefinitions@2022-10-01' = {
@@ -78,6 +87,16 @@ resource mspAssignment 'Microsoft.ManagedServices/registrationAssignments@2022-1
   name: guid(mspOfferName)
   properties: {
     registrationDefinitionId: mspRegistration.id
+  }
+}
+
+module SOCSolutions 'SOC-solutions.bicep' = {
+  name: '${deployment().name}-Solutions'
+  params: {
+    managedByTenantId: managedByTenantId
+    customerAzureSecurityInsightsId: customerAzureSecurityInsightsId
+    socManagementGroupId: groupMap.L2SocOperators
+    resourceGroupName: ResourceGroupName
   }
 }
 

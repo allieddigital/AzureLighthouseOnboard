@@ -4,19 +4,9 @@
 
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fallieddigital%2FAzureLighthouseOnboard%2Fmain%2Fmodules%2Fsubscription-managing-tenant-approvers.bicep)
 
-## Azure Sentinel SOC Management
+## Azure Sentinel SOC Deployment
 
-### Subscription
-
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fallieddigital.github.io%2FAzureLighthouseOnboard%2FSOC.json)
-
-### Management Group
-
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fallieddigital.github.io%2FAzureLighthouseOnboard%2FSOC-mg.json)
-
-## Azure Sentinel SOC Playbook Operation
-
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fallieddigital.github.io%2FAzureLighthouseOnboard%2FSOC-playbook.json)
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fgithub.com%2Fallieddigital%2FAzureLighthouseOnboard%2Freleases%2Flatest%2Fdownload%2FSOC.json)
 
 ## RIMM Full Contributor Access
 

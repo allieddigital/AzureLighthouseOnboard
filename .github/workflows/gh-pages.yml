@@ -22,12 +22,6 @@ jobs:
       - name: Build SOC Bicep
         run: bicep build ./modules/SOC.bicep --outdir out
 
-      - name: Build SOC Playbook Bicep
-        run: bicep build ./modules/SOC-playbook.bicep --outdir out
-
-      - name: Build SOC Playbook Bicep
-        run: bicep build ./modules/SOC-playbook-rg.bicep --outdir out
-
       - name: Create SOC MG Template
         run: |
           Copy-Item out/SOC.json ./modules/SOC.json
