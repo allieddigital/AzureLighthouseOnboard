@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.29.47.4906",
-      "templateHash": "13095667936265142822"
+      "templateHash": "4211995421493097095"
     }
   },
   "parameters": {
@@ -83,7 +83,7 @@
     {
       "type": "Microsoft.ManagedServices/registrationDefinitions",
       "apiVersion": "2022-10-01",
-      "name": "[format('{0} - {1}', variables('mspOfferName'), variables('managedByTenantId'))]",
+      "name": "[guid(format('{0}{1}', variables('mspOfferName'), variables('managedByTenantId')))]",
       "properties": {
         "registrationDefinitionName": "[variables('mspOfferName')]",
         "description": "[variables('mspOfferDescription')]",
@@ -94,12 +94,12 @@
     {
       "type": "Microsoft.ManagedServices/registrationAssignments",
       "apiVersion": "2022-10-01",
-      "name": "[format('{0} - {1}', variables('mspOfferName'), variables('managedByTenantId'))]",
+      "name": "[guid(format('{0}{1}', variables('mspOfferName'), variables('managedByTenantId')))]",
       "properties": {
-        "registrationDefinitionId": "[subscriptionResourceId('Microsoft.ManagedServices/registrationDefinitions', format('{0} - {1}', variables('mspOfferName'), variables('managedByTenantId')))]"
+        "registrationDefinitionId": "[subscriptionResourceId('Microsoft.ManagedServices/registrationDefinitions', guid(format('{0}{1}', variables('mspOfferName'), variables('managedByTenantId'))))]"
       },
       "dependsOn": [
-        "[subscriptionResourceId('Microsoft.ManagedServices/registrationDefinitions', format('{0} - {1}', variables('mspOfferName'), variables('managedByTenantId')))]"
+        "[subscriptionResourceId('Microsoft.ManagedServices/registrationDefinitions', guid(format('{0}{1}', variables('mspOfferName'), variables('managedByTenantId'))))]"
       ]
     },
     {
@@ -134,7 +134,7 @@
             "_generator": {
               "name": "bicep",
               "version": "0.29.47.4906",
-              "templateHash": "3557587164994579349"
+              "templateHash": "17531515696573586566"
             }
           },
           "parameters": {
@@ -198,7 +198,7 @@
             {
               "type": "Microsoft.ManagedServices/registrationDefinitions",
               "apiVersion": "2022-10-01",
-              "name": "[format('{0} - Solutions - {1}', variables('mspOfferName'), parameters('managedByTenantId'))]",
+              "name": "[guid(format('{0}{1}{2}', variables('mspOfferName'), parameters('managedByTenantId'), parameters('resourceGroupName')))]",
               "properties": {
                 "registrationDefinitionName": "[variables('mspOfferName')]",
                 "description": "[variables('mspOfferDescription')]",
@@ -209,7 +209,7 @@
             {
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
-              "name": "[format('{0} - Solutions - {1}', variables('mspOfferName'), parameters('managedByTenantId'))]",
+              "name": "[guid(format('{0}{1}{2}', variables('mspOfferName'), parameters('managedByTenantId'), parameters('resourceGroupName')))]",
               "resourceGroup": "[parameters('resourceGroupName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -218,7 +218,7 @@
                 "mode": "Incremental",
                 "parameters": {
                   "mspRegistrationId": {
-                    "value": "[subscriptionResourceId('Microsoft.ManagedServices/registrationDefinitions', format('{0} - Solutions - {1}', variables('mspOfferName'), parameters('managedByTenantId')))]"
+                    "value": "[subscriptionResourceId('Microsoft.ManagedServices/registrationDefinitions', guid(format('{0}{1}{2}', variables('mspOfferName'), parameters('managedByTenantId'), parameters('resourceGroupName'))))]"
                   }
                 },
                 "template": {
@@ -228,7 +228,7 @@
                     "_generator": {
                       "name": "bicep",
                       "version": "0.29.47.4906",
-                      "templateHash": "6089756297918888951"
+                      "templateHash": "1204641134268571702"
                     }
                   },
                   "parameters": {
@@ -239,14 +239,11 @@
                       }
                     }
                   },
-                  "variables": {
-                    "assignmentId": "[guid(parameters('mspRegistrationId'), resourceGroup().id)]"
-                  },
                   "resources": [
                     {
                       "type": "Microsoft.ManagedServices/registrationAssignments",
                       "apiVersion": "2022-10-01",
-                      "name": "[variables('assignmentId')]",
+                      "name": "[parameters('mspRegistrationId')]",
                       "properties": {
                         "registrationDefinitionId": "[parameters('mspRegistrationId')]"
                       }
@@ -255,13 +252,13 @@
                   "outputs": {
                     "assignment": {
                       "type": "object",
-                      "value": "[reference(resourceId('Microsoft.ManagedServices/registrationAssignments', variables('assignmentId')), '2022-10-01', 'full')]"
+                      "value": "[reference(resourceId('Microsoft.ManagedServices/registrationAssignments', parameters('mspRegistrationId')), '2022-10-01', 'full')]"
                     }
                   }
                 }
               },
               "dependsOn": [
-                "[subscriptionResourceId('Microsoft.ManagedServices/registrationDefinitions', format('{0} - Solutions - {1}', variables('mspOfferName'), parameters('managedByTenantId')))]"
+                "[subscriptionResourceId('Microsoft.ManagedServices/registrationDefinitions', guid(format('{0}{1}{2}', variables('mspOfferName'), parameters('managedByTenantId'), parameters('resourceGroupName'))))]"
               ]
             }
           ]
