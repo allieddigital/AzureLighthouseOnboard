@@ -5,14 +5,15 @@
     "_generator": {
       "name": "bicep",
       "version": "0.29.47.4906",
-      "templateHash": "14894290736155742637"
+      "templateHash": "10905442500248249818"
     }
   },
   "parameters": {
     "ResourceGroupName": {
       "type": "string",
+      "defaultValue": "",
       "metadata": {
-        "description": "Specify the name of the resource group where the SOC is permitted to deploy Sentinel supporting solutions. This is typically the same resource group as the Sentinel workspace but you may also opt for a separate resource group"
+        "description": "Specify the name of the resource group where the SOC is permitted to deploy Sentinel supporting solutions. This is typically the same resource group as the Sentinel workspace but you may also opt for a separate resource group. If left empty, the SOC solution setup will be skipped"
       }
     },
     "customerAzureSecurityInsightsId": {
@@ -107,6 +108,7 @@
       ]
     },
     {
+      "condition": "[not(equals(parameters('ResourceGroupName'), ''))]",
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2022-09-01",
       "name": "[format('{0}-Solutions', deployment().name)]",
