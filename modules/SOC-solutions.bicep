@@ -53,7 +53,7 @@ var authorizations = [
 
 // Registers the SOC offer at subscription scope. We cannot register this at resource group scope
 resource mspRegistration 'Microsoft.ManagedServices/registrationDefinitions@2022-10-01' = {
-  name: guid(mspOfferName)
+  name: '${mspOfferName} - Solutions - ${managedByTenantId}'
   properties: {
     registrationDefinitionName: mspOfferName
     description: mspOfferDescription
@@ -64,7 +64,7 @@ resource mspRegistration 'Microsoft.ManagedServices/registrationDefinitions@2022
 
 // Creates the actual assignment. Must be done as a separate module since it is resource group scoped
 module socRgAssignment 'SOC-solutions-rg.bicep' = {
-  name: 'SOC_Playbook_Management_Access'
+  name: '${mspOfferName} - Solutions - ${managedByTenantId}'
   scope: resourceGroup(resourceGroupName)
   params: {
     mspRegistrationId: mspRegistration.id
