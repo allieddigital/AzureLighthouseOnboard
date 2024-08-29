@@ -1,7 +1,7 @@
 targetScope = 'subscription'
 
-@description('Specify the name of the resource group where the SOC is permitted to deploy Sentinel supporting solutions. This is typically the same resource group as the Sentinel workspace but you may also opt for a separate resource group')
-param ResourceGroupName string
+@description('Specify the name of the resource group where the SOC is permitted to deploy Sentinel supporting solutions. This is typically the same resource group as the Sentinel workspace but you may also opt for a separate resource group. If left empty, the SOC solution setup will be skipped')
+param ResourceGroupName string = ''
 
 @description('''We need your Azure Security Insights Enterprise Application Object ID to enable runbook access and restrictions prevent us from discovering this automatically for you. To find it, go to https://portal.azure.com/#view/Microsoft_AAD_IAM/StartboardApplicationsMenuBlade/~/AppAppsPreview, remove the "Application Type == Enterprise Applications" filter, and then type "Azure Security Insights" into the filter box, and copy the Object ID (Not the Application ID) here. You can also run the following Azure PowerShell command: (Get-AzADServicePrincipal -Filter "DisplayName eq 'Azure Security Insights'").Id ''')
 param customerAzureSecurityInsightsId string
@@ -90,7 +90,7 @@ resource mspAssignment 'Microsoft.ManagedServices/registrationAssignments@2022-1
   }
 }
 
-module SOCSolutions 'SOC-solutions.bicep' = {
+module SOCSolutions 'SOC-solutions.bicep' = if (ResourceGroupName != '') {
   name: '${deployment().name}-Solutions'
   params: {
     managedByTenantId: managedByTenantId
