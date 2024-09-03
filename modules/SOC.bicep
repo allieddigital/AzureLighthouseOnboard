@@ -89,7 +89,7 @@ resource mspAssignment 'Microsoft.ManagedServices/registrationAssignments@2022-1
 }
 
 module SOCSolutions 'SOC-solutions.bicep' = if (ResourceGroupName != '') {
-  name: '${deployment().name}-Solutions'
+  name: '${deployment().name}-solutions'
   params: {
     managedByTenantId: managedByTenantId
     managedByTenantSecurityInsightsObjectId: managedByTenantSecurityInsightsObjectId

@@ -5,7 +5,7 @@ param mspRegistrationId string
 
 // Associates the SOC Playbook Management registration with the resource group
 resource mspAssignment 'Microsoft.ManagedServices/registrationAssignments@2022-10-01' = {
-  name: mspRegistrationId
+  name: guid(mspRegistrationId)
   properties: {
     registrationDefinitionId: mspRegistrationId
   }

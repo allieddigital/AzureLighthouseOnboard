@@ -64,7 +64,7 @@ resource mspRegistration 'Microsoft.ManagedServices/registrationDefinitions@2022
 
 // Creates the actual assignment. Must be done as a separate module since it is resource group scoped
 module socRgAssignment 'SOC-solutions-rg.bicep' = {
-  name: mspRegistration.name
+  name: '${deployment().name}-rg'
   scope: resourceGroup(resourceGroupName)
   params: {
     mspRegistrationId: mspRegistration.id
