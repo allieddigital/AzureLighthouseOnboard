@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.29.47.4906",
-      "templateHash": "4211995421493097095"
+      "templateHash": "16339681486689769015"
     }
   },
   "parameters": {
@@ -106,7 +106,7 @@
       "condition": "[not(equals(parameters('ResourceGroupName'), ''))]",
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2022-09-01",
-      "name": "[format('{0}-Solutions', deployment().name)]",
+      "name": "[format('{0}-solutions', deployment().name)]",
       "location": "[deployment().location]",
       "properties": {
         "expressionEvaluationOptions": {
@@ -134,7 +134,7 @@
             "_generator": {
               "name": "bicep",
               "version": "0.29.47.4906",
-              "templateHash": "17531515696573586566"
+              "templateHash": "15991101121243755377"
             }
           },
           "parameters": {
@@ -209,7 +209,7 @@
             {
               "type": "Microsoft.Resources/deployments",
               "apiVersion": "2022-09-01",
-              "name": "[guid(format('{0}{1}{2}', variables('mspOfferName'), parameters('managedByTenantId'), parameters('resourceGroupName')))]",
+              "name": "[format('{0}-rg', deployment().name)]",
               "resourceGroup": "[parameters('resourceGroupName')]",
               "properties": {
                 "expressionEvaluationOptions": {
@@ -228,7 +228,7 @@
                     "_generator": {
                       "name": "bicep",
                       "version": "0.29.47.4906",
-                      "templateHash": "1204641134268571702"
+                      "templateHash": "12862051610816085681"
                     }
                   },
                   "parameters": {
@@ -243,7 +243,7 @@
                     {
                       "type": "Microsoft.ManagedServices/registrationAssignments",
                       "apiVersion": "2022-10-01",
-                      "name": "[parameters('mspRegistrationId')]",
+                      "name": "[guid(parameters('mspRegistrationId'))]",
                       "properties": {
                         "registrationDefinitionId": "[parameters('mspRegistrationId')]"
                       }
@@ -252,7 +252,7 @@
                   "outputs": {
                     "assignment": {
                       "type": "object",
-                      "value": "[reference(resourceId('Microsoft.ManagedServices/registrationAssignments', parameters('mspRegistrationId')), '2022-10-01', 'full')]"
+                      "value": "[reference(resourceId('Microsoft.ManagedServices/registrationAssignments', guid(parameters('mspRegistrationId'))), '2022-10-01', 'full')]"
                     }
                   }
                 }
