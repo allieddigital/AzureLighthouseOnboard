@@ -40,6 +40,9 @@ jobs:
       - name: Build Bicep
         run: bicep build ./modules/EM-subscription-Reader.bicep --outdir out
 
+      - name: UI Definitions
+        run: Copy-Item ADSLOnboardUIDefinition.json,LighthouseUIDefinition.json ./out
+
       - name: Publish to Github Pages 🚀
         uses: JamesIves/github-pages-deploy-action@v4.4.3
         with:
