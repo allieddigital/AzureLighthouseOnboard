@@ -15,6 +15,7 @@ var mspOfferDescription = 'Enables SOC operations to deploy solutions to a parti
 
 var roleMap = {
   Contributor: 'b24988ac-6180-42a0-ab88-20f7382dd24c'
+  DeploymentStackContributor: ''
   MicrosoftSentinelAutomationContributor: 'f4c81013-99ee-4d62-a7ee-b3f1f648599a'
   UserAccessAdministrator: '18d7d88d-d35e-4fb5-a5c3-7773c20a72d9'
   // Used to grant access to a managed identity to publish to a DCR
