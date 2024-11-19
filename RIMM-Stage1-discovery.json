@@ -1,0 +1,87 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.31.92.45157",
+      "templateHash": "12126514686347789948"
+    }
+  },
+  "variables": {
+    "mspOfferName": "Remote Infrastructure Monitoring and Management - Initial Onboarding and Discovery",
+    "mspOfferDescription": "Provides access for Remote Infrastructure Monitoring and Management to discover and monitor resources in your subscription.",
+    "managedByTenantId": "2f46c040-48e3-4eb8-8fbf-418417f64401",
+    "principalMap": {
+      "Onboard": "d3b6d7a8-aeff-4940-88fc-546e7b90360e",
+      "MonitoringAccount": "3481a415-9c10-41a7-8646-766db2b1a2b9",
+      "RelationshipAdmins": "def1935f-89ea-473b-aa1d-c6d4b3462f03"
+    },
+    "roleMap": {
+      "SupportRequestContributor": "cfd33db0-3dd1-45e3-aa9d-cdbdf3b6f24e",
+      "Reader": "acdd72a7-3385-48ef-bd42-f606fba81ae7",
+      "ManagedServicesDeleteRole": "91c1777a-f3dc-4fae-b103-61d183457e46"
+    },
+    "authorizations": [
+      {
+        "principalId": "[variables('principalMap').Onboard]",
+        "principalIdDisplayName": "RIMM Monitoring Access",
+        "roleDefinitionId": "[variables('roleMap').SupportRequestContributor]"
+      },
+      {
+        "principalId": "[variables('principalMap').MonitoringAccount]",
+        "principalIdDisplayName": "RIMM Monitoring Service Principal",
+        "roleDefinitionId": "[variables('roleMap').SupportRequestContributor]"
+      },
+      {
+        "principalId": "[variables('principalMap').Onboard]",
+        "principalIdDisplayName": "RIMM Monitoring Access",
+        "roleDefinitionId": "[variables('roleMap').Reader]"
+      },
+      {
+        "principalId": "[variables('principalMap').MonitoringAccount]",
+        "principalIdDisplayName": "RIMM Monitoring Service Principal",
+        "roleDefinitionId": "[variables('roleMap').Reader]"
+      },
+      {
+        "principalId": "[variables('principalMap').RelationshipAdmins]",
+        "principalIdDisplayName": "RIMM Relationship Admins",
+        "roleDefinitionId": "[variables('roleMap').ManagedServicesDeleteRole]"
+      }
+    ]
+  },
+  "resources": [
+    {
+      "type": "Microsoft.ManagedServices/registrationDefinitions",
+      "apiVersion": "2022-10-01",
+      "name": "[guid(variables('mspOfferName'))]",
+      "properties": {
+        "registrationDefinitionName": "[variables('mspOfferName')]",
+        "description": "[variables('mspOfferDescription')]",
+        "managedByTenantId": "[variables('managedByTenantId')]",
+        "authorizations": "[variables('authorizations')]"
+      }
+    },
+    {
+      "type": "Microsoft.ManagedServices/registrationAssignments",
+      "apiVersion": "2022-10-01",
+      "name": "[guid(variables('mspOfferName'))]",
+      "properties": {
+        "registrationDefinitionId": "[subscriptionResourceId('Microsoft.ManagedServices/registrationDefinitions', guid(variables('mspOfferName')))]"
+      },
+      "dependsOn": [
+        "[subscriptionResourceId('Microsoft.ManagedServices/registrationDefinitions', guid(variables('mspOfferName')))]"
+      ]
+    }
+  ],
+  "outputs": {
+    "mspOfferName": {
+      "type": "string",
+      "value": "[format('Managed by {0}', variables('mspOfferName'))]"
+    },
+    "authorizations": {
+      "type": "array",
+      "value": "[variables('authorizations')]"
+    }
+  }
+}
