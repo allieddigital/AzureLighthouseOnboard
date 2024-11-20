@@ -4,7 +4,7 @@ targetScope = 'managementGroup'
 param managementSubscriptionId string
 module subscriptionOnboard 'RIMM-Stage1-discovery.bicep' = {
   scope: subscription(managementSubscriptionId)
-  name: '${deployment().name}-LighthouseRegistrationDefinition'
+  name: '${deployment().name}-reg'
 }
 
 var mspRegistrationId = subscriptionOnboard.outputs.mspRegistrationId
