@@ -2,9 +2,8 @@ targetScope = 'managementGroup'
 
 @description('Provide the management subscription id')
 param managementSubscriptionId string
-
 module subscriptionOnboard 'RIMM-Stage1-discovery.bicep' = {
-  scope: subscription(managementSubscriptionId)
+  scope: subscription('/subscriptions/${managementSubscriptionId}')
   name: 'RIMM-Stage1-discovery'
 }
 
