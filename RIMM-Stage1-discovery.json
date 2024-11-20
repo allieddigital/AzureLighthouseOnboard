@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.31.92.45157",
-      "templateHash": "13761134477916060792"
+      "templateHash": "18273958513934847699"
     }
   },
   "variables": {
@@ -67,6 +67,10 @@
     "mspOfferName": {
       "type": "string",
       "value": "[format('Managed by {0}', variables('mspOfferName'))]"
+    },
+    "mspRegistrationId": {
+      "type": "string",
+      "value": "[subscriptionResourceId('Microsoft.ManagedServices/registrationDefinitions', guid(variables('mspOfferName')))]"
     },
     "authorizations": {
       "type": "array",
