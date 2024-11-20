@@ -29,15 +29,18 @@
 							}
 						},
 						{
-							"name": "mgmtSub",
-							"type": "Microsoft.Common.ResourceScope",
-							"label": "Management Subscription (Azure Lighthouse Registration Definition will be deployed here)",
-							"location": {
-								"resourceTypes": [
-									"Microsoft.Resources/subscriptions"
-								]
-							}
-						}
+                "name": "mgmtSub",
+                "type": "Microsoft.Common.TextBox",
+                "label": "Enter the GUID ID of the management subscription where the Azure Lighthouse resource definition will be created.",
+                "placeholder": "b4c281ea-c549-45c4-83d4-7fa89f2843f1",
+                "toolTip": "Use only allowed characters",
+                "constraints": {
+                    "required": true,
+                    "regex": "^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$",
+                    "validationMessage": "Must be a subscription ID in GUID format."
+                },
+                "visible": true
+            }
 					]
 				}
 			]
