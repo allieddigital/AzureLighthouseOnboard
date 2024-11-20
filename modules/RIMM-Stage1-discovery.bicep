@@ -56,4 +56,5 @@ resource mspAssignment 'Microsoft.ManagedServices/registrationAssignments@2022-1
 }
 
 output mspOfferName string = 'Managed by ${mspOfferName}'
+output mspRegistrationId string = mspRegistration.id
 output authorizations array = authorizations

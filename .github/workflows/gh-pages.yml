@@ -29,13 +29,13 @@ jobs:
           | Set-Content out/SOC-mg.json
 
       - name: Build RIMM Stage 1 Discovery Template
-        run: bicep build ./modules/RIMM-Stage1-discovery.bicep --outdir out
+        run: |
+          bicep build ./modules/RIMM-Stage1-discovery.bicep --outdir out
+          bicep build ./modules/RIMM-Stage1-discovery-mg.bicep --outdir out
 
       - name: Create RIMM MG Template
         run: |
-          Copy-Item out/RIMM-Stage1-discovery.json ./modules/RIMM-Stage1-discovery.json
-          (Get-Content -Raw out/RIMM-Stage1-discovery.json).Replace('subscription','managementGroup')
-          | Set-Content out/RIMM-Stage1-discovery-mg.json
+
 
       - name: Build Bicep
         run: bicep build ./modules/EM-subscription-Reader.bicep --outdir out
