@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.31.92.45157",
-      "templateHash": "11322518948201374588"
+      "templateHash": "17267881165986875844"
     }
   },
   "parameters": {
@@ -22,17 +22,17 @@
       "apiVersion": "2022-10-01",
       "name": "[guid(parameters('managementSubscriptionId'), managementGroup().id)]",
       "properties": {
-        "registrationDefinitionId": "[reference(subscriptionResourceId(format('/subscriptions/{0}', parameters('managementSubscriptionId')), 'Microsoft.Resources/deployments', 'RIMM-Stage1-discovery'), '2022-09-01').outputs.mspRegistrationId.value]"
+        "registrationDefinitionId": "[reference(subscriptionResourceId(parameters('managementSubscriptionId'), 'Microsoft.Resources/deployments', format('{0}-LighthouseRegistrationDefinition', deployment().name)), '2022-09-01').outputs.mspRegistrationId.value]"
       },
       "dependsOn": [
-        "[subscriptionResourceId(format('/subscriptions/{0}', parameters('managementSubscriptionId')), 'Microsoft.Resources/deployments', 'RIMM-Stage1-discovery')]"
+        "[subscriptionResourceId(parameters('managementSubscriptionId'), 'Microsoft.Resources/deployments', format('{0}-LighthouseRegistrationDefinition', deployment().name))]"
       ]
     },
     {
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2022-09-01",
-      "name": "RIMM-Stage1-discovery",
-      "subscriptionId": "[format('/subscriptions/{0}', parameters('managementSubscriptionId'))]",
+      "name": "[format('{0}-LighthouseRegistrationDefinition', deployment().name)]",
+      "subscriptionId": "[parameters('managementSubscriptionId')]",
       "location": "[deployment().location]",
       "properties": {
         "expressionEvaluationOptions": {
