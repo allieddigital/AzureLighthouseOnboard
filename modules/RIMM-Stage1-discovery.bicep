@@ -10,7 +10,6 @@ var managedByTenantId = '2f46c040-48e3-4eb8-8fbf-418417f64401'
 
 var principalMap = {
   Onboard: 'd3b6d7a8-aeff-4940-88fc-546e7b90360e'
-  MonitoringAccount: '3481a415-9c10-41a7-8646-766db2b1a2b9'
   RelationshipAdmins: 'def1935f-89ea-473b-aa1d-c6d4b3462f03'
 }
 
@@ -28,18 +27,8 @@ var authorizations = [
     roleDefinitionId: roleMap.SupportRequestContributor
   }
   {
-    principalId: principalMap.MonitoringAccount
-    principalIdDisplayName: 'RIMM Monitoring Service Principal'
-    roleDefinitionId: roleMap.SupportRequestContributor
-  }
-  {
     principalId: principalMap.Onboard
     principalIdDisplayName: 'RIMM Monitoring Access'
-    roleDefinitionId: roleMap.Reader
-  }
-  {
-    principalId: principalMap.MonitoringAccount
-    principalIdDisplayName: 'RIMM Monitoring Service Principal'
     roleDefinitionId: roleMap.Reader
   }
   {
