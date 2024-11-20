@@ -1,0 +1,42 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2021-09-09/uiFormDefinition.schema.json",
+	"view": {
+		"kind": "Form",
+		"properties": {
+			"title": "Azure Lighthouse Initial Onboard for Remote Infrastructure Monitoring and Management (RIMM)",
+			"steps": [
+				{
+					"name": "info",
+					"type": "Microsoft.Common.TextBlock",
+					"visible": true,
+					"options": {
+						"text": "This deployment enables [Azure Lighthouse](https://learn.microsoft.com/en-us/shows/azure-videos/ask-for-azure-lighthouse) for the RIMM operations team to perform read-only discovery and initial monitoring of your environment. <br /><br /> The [Reader](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/general#reader), [Support Request Contributor](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/management-and-governance#support-request-contributor), and [Managed Services Delete](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/management-and-governance#managed-services-registration-assignment-delete-role) roles are provsioned for onboarding. You can review your [Service Providers](https://learn.microsoft.com/en-us/azure/lighthouse/how-to/view-manage-service-providers) to monitor, add additional delegations, or remove access at any time. Please contact your onboarding manager if you have any issues or questions.",
+						"link": {
+							"label": "Learn more",
+							"uri": "https://www.microsoft.com"
+						}
+					}
+				},
+				{
+					"name": "basics",
+					"label": "Onboarding",
+					"elements": [
+						{
+							"name": "resourceScope",
+							"type": "Microsoft.Common.ResourceScope",
+							"location": {
+								"resourceTypes": []
+							}
+						}
+					]
+				}
+			]
+		},
+		"outputs": {
+			"kind": "Subscription",
+			"location": "[steps('basics').resourceScope.location.name]",
+			"subscriptionId": "[steps('basics').resourceScope.subscription.id]",
+			"parameters": {}
+		}
+	}
+}

@@ -41,7 +41,7 @@ jobs:
         run: bicep build ./modules/EM-subscription-Reader.bicep --outdir out
 
       - name: UI Definitions
-        run: Copy-Item ADSLOnboardUIDefinition.json,LighthouseUIDefinition.json ./out
+        run: Copy-Item RIMM-Stage1-discovery-uiDef.json,RIMM-Stage2-discovery-uiDef-mg.json ./out
 
       - name: Publish to Github Pages 🚀
         uses: JamesIves/github-pages-deploy-action@v4.4.3
