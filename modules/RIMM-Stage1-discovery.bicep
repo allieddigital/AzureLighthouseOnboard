@@ -1,7 +1,7 @@
 targetScope = 'subscription'
 
 @description('Specify a unique name for your offer')
-var mspOfferName = 'Remote Infrastructure Monitoring and Management - Initial Onboarding and Discovery'
+var mspOfferName = 'Remote Infrastructure Monitoring and Management - Tier 1'
 
 var mspOfferDescription = 'Provides access for Remote Infrastructure Monitoring and Management to discover and monitor resources in your subscription.'
 
