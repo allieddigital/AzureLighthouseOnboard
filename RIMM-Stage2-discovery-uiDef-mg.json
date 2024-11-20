@@ -7,8 +7,20 @@
 			"steps": [
 				{
 					"name": "basics",
-					"label": "Onboarding",
+					"label": "Azure Lighthouse",
 					"elements": [
+						{
+							"name": "info",
+							"type": "Microsoft.Common.TextBlock",
+							"visible": true,
+							"options": {
+								"text": "This deployment enables [Azure Lighthouse](https://learn.microsoft.com/en-us/shows/azure-videos/ask-for-azure-lighthouse) for the RIMM operations team to perform read-only discovery and initial monitoring of your environment. <br /><br /> The [Reader](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/general#reader), [Support Request Contributor](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/management-and-governance#support-request-contributor), and [Managed Services Delete](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/management-and-governance#managed-services-registration-assignment-delete-role) roles are provsioned for onboarding. You can review your [Service Providers](https://learn.microsoft.com/en-us/azure/lighthouse/how-to/view-manage-service-providers) to monitor, add additional delegations, or remove access at any time. Please contact your onboarding manager if you have any issues or questions.",
+								"link": {
+									"label": "Learn more",
+									"uri": "https://www.microsoft.com"
+								}
+							}
+						},
 						{
 							"name": "resourceScope",
 							"type": "Microsoft.Common.ResourceScope",
@@ -31,18 +43,6 @@
 										]
 								}
 						]
-				},
-				{
-					"name": "info",
-					"type": "Microsoft.Common.TextBlock",
-					"visible": true,
-					"options": {
-						"text": "This deployment enables [Azure Lighthouse](https://learn.microsoft.com/en-us/shows/azure-videos/ask-for-azure-lighthouse) for the RIMM operations team to perform read-only discovery and initial monitoring of your environment. <br /><br /> The [Reader](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/general#reader), [Support Request Contributor](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/management-and-governance#support-request-contributor), and [Managed Services Delete](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles/management-and-governance#managed-services-registration-assignment-delete-role) roles are provsioned for onboarding. You can review your [Service Providers](https://learn.microsoft.com/en-us/azure/lighthouse/how-to/view-manage-service-providers) to monitor, add additional delegations, or remove access at any time. Please contact your onboarding manager if you have any issues or questions.",
-						"link": {
-							"label": "Learn more",
-							"uri": "https://www.microsoft.com"
-						}
-					}
 				}
 			]
 		},
