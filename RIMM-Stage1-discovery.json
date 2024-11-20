@@ -5,11 +5,11 @@
     "_generator": {
       "name": "bicep",
       "version": "0.31.92.45157",
-      "templateHash": "18273958513934847699"
+      "templateHash": "11254532813043347120"
     }
   },
   "variables": {
-    "mspOfferName": "Remote Infrastructure Monitoring and Management - Initial Onboarding and Discovery",
+    "mspOfferName": "Remote Infrastructure Monitoring and Management - Tier 1",
     "mspOfferDescription": "Provides access for Remote Infrastructure Monitoring and Management to discover and monitor resources in your subscription.",
     "managedByTenantId": "2f46c040-48e3-4eb8-8fbf-418417f64401",
     "principalMap": {
