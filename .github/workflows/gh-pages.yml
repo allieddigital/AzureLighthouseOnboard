@@ -31,14 +31,6 @@ jobs:
       - name: Build RIMM Stage 1 Discovery Template
         run: |
           bicep build ./modules/RIMM-Stage1-discovery.bicep --outdir out
-          bicep build ./modules/RIMM-Stage1-discovery-mg.bicep --outdir out
-
-      - name: Create RIMM MG Template
-        run: |
-
-
-      - name: Build Bicep
-        run: bicep build ./modules/EM-subscription-Reader.bicep --outdir out
 
       - name: UI Definitions
         run: Copy-Item *-uiDef.json ./out
