@@ -5,7 +5,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.31.92.45157",
-      "templateHash": "17267881165986875844"
+      "templateHash": "16817402478725153545"
     }
   },
   "parameters": {
@@ -22,16 +22,16 @@
       "apiVersion": "2022-10-01",
       "name": "[guid(parameters('managementSubscriptionId'), managementGroup().id)]",
       "properties": {
-        "registrationDefinitionId": "[reference(subscriptionResourceId(parameters('managementSubscriptionId'), 'Microsoft.Resources/deployments', format('{0}-LighthouseRegistrationDefinition', deployment().name)), '2022-09-01').outputs.mspRegistrationId.value]"
+        "registrationDefinitionId": "[reference(subscriptionResourceId(parameters('managementSubscriptionId'), 'Microsoft.Resources/deployments', format('{0}-reg', deployment().name)), '2022-09-01').outputs.mspRegistrationId.value]"
       },
       "dependsOn": [
-        "[subscriptionResourceId(parameters('managementSubscriptionId'), 'Microsoft.Resources/deployments', format('{0}-LighthouseRegistrationDefinition', deployment().name))]"
+        "[subscriptionResourceId(parameters('managementSubscriptionId'), 'Microsoft.Resources/deployments', format('{0}-reg', deployment().name))]"
       ]
     },
     {
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2022-09-01",
-      "name": "[format('{0}-LighthouseRegistrationDefinition', deployment().name)]",
+      "name": "[format('{0}-reg', deployment().name)]",
       "subscriptionId": "[parameters('managementSubscriptionId')]",
       "location": "[deployment().location]",
       "properties": {
