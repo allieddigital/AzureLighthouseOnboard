@@ -27,22 +27,14 @@
 							"location": {
 								"resourceTypes": []
 							}
+						},
+						{
+							"name": "registrationDefinition",
+							"type": "Microsoft.Solutions.ResourceSelector",
+							"label": "Select the registration definition created in the Subscription deployment",
+							"resourceType": "Microsoft.ManagedServices/registrationDefinitions"
 						}
 					]
-				},
-				{
-						"name": "tags",
-						"label": "Tags",
-						"elements": [
-								{
-										"name": "tagsByResource",
-										"type": "Microsoft.Common.TagsByResource",
-										"resources": [
-												"Microsoft.Storage/storageAccounts",
-												"Microsoft.Compute/virtualMachines"
-										]
-								}
-						]
 				}
 			]
 		},
@@ -51,9 +43,7 @@
 			"location": "[steps('basics').resourceScope.location.name]",
 			"managementGroupId": "[steps('basics').resourceScope.managementGroup.id]",
 			"parameters": {
-				"parameters": {
-					"tagsByResource": "[steps('tags').tagsByResource]"
-				}
+				"mspRegistrationResourceId": "[steps('basics').registrationDefinition.id]"
 			}
 		}
 	}
