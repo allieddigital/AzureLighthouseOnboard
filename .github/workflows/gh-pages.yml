@@ -30,7 +30,9 @@ jobs:
 
       - name: Build RIMM Stage 1 Discovery Template
         run: |
-          bicep build ./modules/RIMM-Stage1-discovery.bicep --outdir out
+          get-item ./modules/RIMM-*.bicep | ForEach-Object {
+            bicep build $_.FullName --outdir out
+          }
 
       - name: UI Definitions
         run: Copy-Item *-uiDef.json ./out
