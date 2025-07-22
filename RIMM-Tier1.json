@@ -6,7 +6,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.36.177.2456",
-      "templateHash": "9148055240807383812"
+      "templateHash": "14621579297202335562"
     }
   },
   "variables": {
@@ -89,7 +89,7 @@
       "properties": {
         "registrationDefinitionName": "[variables('mspOfferName')]",
         "description": "[variables('mspOfferDescription')]",
-        "managedByTenantId": "[guid(variables('managedByTenantId'))]",
+        "managedByTenantId": "[variables('managedByTenantId')]",
         "authorizations": "[variables('authorizations')]"
       }
     }
