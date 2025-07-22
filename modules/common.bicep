@@ -19,7 +19,6 @@ var roleMap = {
   ManagedServicesDeleteRole: '91c1777a-f3dc-4fae-b103-61d183457e46'
   Contributor: 'b24988ac-6180-42a0-ab88-20f7382dd24c'
   MonitoringContributor: '749f88d5-cbae-40b8-bcfc-e573ddc772fa'
-  MetricsPublisher: '3913510d-42f4-4e42-8a64-420c390055eb'
   LogAnalyticsContributor: '92aaf0da-9dab-42b6-94a3-d43ce8d16293'
 }
 
@@ -53,11 +52,6 @@ var tier1 = [
     principalId: principalMap.Monitor
     principalIdDisplayName: 'Onboarding and Monitoring Service'
     roleDefinitionId: roleMap.MonitoringContributor
-  }
-  {
-    principalId: principalMap.Monitor
-    principalIdDisplayName: 'Onboarding and Monitoring Service'
-    roleDefinitionId: roleMap.MetricsPublisher
   }
   {
     principalId: principalMap.Monitor

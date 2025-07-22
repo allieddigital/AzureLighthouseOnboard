@@ -1,7 +1,7 @@
 targetScope = 'subscription'
 import { managedByTenantId, assess } from 'common.bicep'
 
-var mspOfferName = '[Direct Link] Remote Infrastructure Monitoring and Management - Assess'
+var mspOfferName = '[Azure Deploy Link] Remote Infrastructure Monitoring and Management - Assess'
 
 var mspOfferDescription = 'Enables Allied Digital to assess your Azure environment for Remote Infrastructure Monitoring and Management readiness.'
 
