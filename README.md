@@ -2,7 +2,7 @@
 
 This is a list of onboarding links to Allied Digital Managed Services.
 
-You should use our Official Marketplace Offers unless you have been directed
+You should use our [Official Marketplace Offers](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/allieddigitalservicesllc1589910062052.rimm?tab=PlansAndPrice) unless you have been directed here specifically by an Allied Digital representative.
 
 ## Remote Infrastructure Management and Monitoring
 
@@ -22,24 +22,6 @@ After running this deployment, you must provide access at the management group, 
 
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fallieddigital.github.io%2FAzureLighthouseOnboard%2FSOC.json)
 
-## RIMM Full Contributor Access
-
-### Subscription
-
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fallieddigital.github.io%2FAzureLighthouseOnboard%2FRIMM.json)
-
-### Management Group
-
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fallieddigital.github.io%2FAzureLighthouseOnboard%2FRIMM-mg.json)
-
 ## EM Bastion Reader Access
 
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fallieddigital.github.io%2FAzureLighthouseOnboard%2FEM-subscription-Reader.json)
-
-## Default VM Test
-
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#blade/Microsoft_Azure_CreateUIDef/CustomDeploymentBlade/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fallieddigital%2FAzureLighthouseOnboard%2Fmain%2Fmodules%2FdefaultVM.json/uiFormDefinitionUri/https%3A%2F%2Fraw.githubusercontent.com%2Fallieddigital%2FAzureLighthouseOnboard%2Fmain%2Fmodules%2FdefaultVM.ui.json)
-
-## Simple VM Test
-
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#blade/Microsoft_Azure_CreateUIDef/CustomDeploymentBlade/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fallieddigital%2FAzureLighthouseOnboard%2Fmain%2Fmodules%2FsimpleVM.json/uiFormDefinitionUri/https%3A%2F%2Fraw.githubusercontent.com%2Fallieddigital%2FAzureLighthouseOnboard%2Fmain%2Fmodules%2FsimpleVM.ui.json)
