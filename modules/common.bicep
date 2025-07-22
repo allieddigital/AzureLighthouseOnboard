@@ -15,6 +15,7 @@ var principalMap = {
 var roleMap = {
   SupportRequestContributor: 'cfd33db0-3dd1-45e3-aa9d-cdbdf3b6f24e'
   Reader: 'acdd72a7-3385-48ef-bd42-f606fba81ae7'
+  DeploymentStackContributor: 'bf7f8882-3383-422a-806a-6526c631a88a'
   ManagedServicesDeleteRole: '91c1777a-f3dc-4fae-b103-61d183457e46'
   Contributor: 'b24988ac-6180-42a0-ab88-20f7382dd24c'
   MonitoringContributor: '749f88d5-cbae-40b8-bcfc-e573ddc772fa'
@@ -43,6 +44,11 @@ var assess = [
 
 @export()
 var tier1 = [
+  {
+    principalId: principalMap.Monitor
+    principalIdDisplayName: 'Onboarding and Monitoring Service'
+    roleDefinitionId: roleMap.DeploymentStackContributor
+  }
   {
     principalId: principalMap.Monitor
     principalIdDisplayName: 'Onboarding and Monitoring Service'
