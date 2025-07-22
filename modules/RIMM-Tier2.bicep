@@ -12,7 +12,7 @@ resource mspRegistration 'Microsoft.ManagedServices/registrationDefinitions@2022
   properties: {
     registrationDefinitionName: mspOfferName
     description: mspOfferDescription
-    managedByTenantId: guid(managedByTenantId)
+    managedByTenantId: managedByTenantId
     authorizations: authorizations
     eligibleAuthorizations: tier2
   }
