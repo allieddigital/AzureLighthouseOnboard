@@ -1,0 +1,105 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2018-05-01/subscriptionDeploymentTemplate.json#",
+  "languageVersion": "2.0",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.36.177.2456",
+      "templateHash": "17624756745878120999"
+    }
+  },
+  "variables": {
+    "mspOfferName": "Allied Digital Remote Infrastructure Monitoring & Management - Tier 1",
+    "mspOfferDescription": "Provisions access for Tier 1 Monitoring and Support of your Azure environment by Allied Digital.",
+    "authorizations": "[flatten(createArray(variables('assess'), variables('tier1')))]",
+    "_1.principalMap": {
+      "Monitor": "d3b6d7a8-aeff-4940-88fc-546e7b90360e",
+      "RelationshipAdmins": "def1935f-89ea-473b-aa1d-c6d4b3462f03",
+      "Tier1": "11a729de-38fb-4056-81d0-b17d37d9a66a",
+      "Tier2": "1a3c024d-2ce5-43e7-9c7c-26b17a604755",
+      "Tier3": "da160a40-d824-4e0c-9bc1-9f1e21986790"
+    },
+    "_1.roleMap": {
+      "SupportRequestContributor": "cfd33db0-3dd1-45e3-aa9d-cdbdf3b6f24e",
+      "Reader": "acdd72a7-3385-48ef-bd42-f606fba81ae7",
+      "ManagedServicesDeleteRole": "91c1777a-f3dc-4fae-b103-61d183457e46",
+      "Contributor": "b24988ac-6180-42a0-ab88-20f7382dd24c",
+      "MonitoringContributor": "749f88d5-cbae-40b8-bcfc-e573ddc772fa",
+      "MetricsPublisher": "3913510d-42f4-4e42-8a64-420c390055eb",
+      "LogAnalyticsContributor": "92aaf0da-9dab-42b6-94a3-d43ce8d16293"
+    },
+    "assess": [
+      {
+        "principalId": "[variables('_1.principalMap').Monitor]",
+        "principalIdDisplayName": "Onboarding and Monitoring Service",
+        "roleDefinitionId": "[variables('_1.roleMap').Reader]"
+      },
+      {
+        "principalId": "[variables('_1.principalMap').Monitor]",
+        "principalIdDisplayName": "Onboarding and Monitoring Service",
+        "roleDefinitionId": "[variables('_1.roleMap').SupportRequestContributor]"
+      },
+      {
+        "principalId": "[variables('_1.principalMap').RelationshipAdmins]",
+        "principalIdDisplayName": "Relationship Admins",
+        "roleDefinitionId": "[variables('_1.roleMap').ManagedServicesDeleteRole]"
+      }
+    ],
+    "managedByTenantId": "2f46c040-48e3-4eb8-8fbf-418417f64401",
+    "tier1": [
+      {
+        "principalId": "[variables('_1.principalMap').Monitor]",
+        "principalIdDisplayName": "Onboarding and Monitoring Service",
+        "roleDefinitionId": "[variables('_1.roleMap').MonitoringContributor]"
+      },
+      {
+        "principalId": "[variables('_1.principalMap').Monitor]",
+        "principalIdDisplayName": "Onboarding and Monitoring Service",
+        "roleDefinitionId": "[variables('_1.roleMap').MetricsPublisher]"
+      },
+      {
+        "principalId": "[variables('_1.principalMap').Monitor]",
+        "principalIdDisplayName": "Onboarding and Monitoring Service",
+        "roleDefinitionId": "[variables('_1.roleMap').LogAnalyticsContributor]"
+      },
+      {
+        "principalId": "[variables('_1.principalMap').Tier1]",
+        "principalIdDisplayName": "Tier 1 Read-Only Support Access",
+        "roleDefinitionId": "[variables('_1.roleMap').Reader]"
+      },
+      {
+        "principalId": "[variables('_1.principalMap').Tier1]",
+        "principalIdDisplayName": "Tier 1 Read-Only Support Access",
+        "roleDefinitionId": "[variables('_1.roleMap').SupportRequestContributor]"
+      }
+    ]
+  },
+  "resources": {
+    "mspRegistration": {
+      "type": "Microsoft.ManagedServices/registrationDefinitions",
+      "apiVersion": "2022-10-01",
+      "name": "[guid(variables('mspOfferName'))]",
+      "properties": {
+        "registrationDefinitionName": "[variables('mspOfferName')]",
+        "description": "[variables('mspOfferDescription')]",
+        "managedByTenantId": "[guid(variables('managedByTenantId'))]",
+        "authorizations": "[variables('authorizations')]"
+      }
+    }
+  },
+  "outputs": {
+    "mspOfferName": {
+      "type": "string",
+      "value": "[format('Managed by {0}', variables('mspOfferName'))]"
+    },
+    "mspRegistrationId": {
+      "type": "string",
+      "value": "[subscriptionResourceId('Microsoft.ManagedServices/registrationDefinitions', guid(variables('mspOfferName')))]"
+    },
+    "authorizations": {
+      "type": "array",
+      "value": "[variables('authorizations')]"
+    }
+  }
+}
