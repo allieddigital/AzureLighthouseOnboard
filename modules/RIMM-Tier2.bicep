@@ -1,9 +1,9 @@
 targetScope = 'subscription'
 import { managedByTenantId, assess, tier1, tier2 } from 'common.bicep'
 
-var mspOfferName = 'Allied Digital Remote Infrastructure Monitoring & Management - Tier 2'
+var mspOfferName = '[Azure Deploy Link] Remote Infrastructure Monitoring and Management - Tier 2/3'
 
-var mspOfferDescription = 'Provisions access for Tier 2 Management of your Azure environment by Allied Digital.'
+var mspOfferDescription = 'Provisions access for Tier 2/3 Management of your Azure environment by Allied Digital.'
 
 var authorizations = [...assess, ...tier1]
 
