@@ -6,7 +6,7 @@
     "_generator": {
       "name": "bicep",
       "version": "0.36.177.2456",
-      "templateHash": "16479879766505954375"
+      "templateHash": "15958056818089643862"
     }
   },
   "variables": {
@@ -27,7 +27,6 @@
       "ManagedServicesDeleteRole": "91c1777a-f3dc-4fae-b103-61d183457e46",
       "Contributor": "b24988ac-6180-42a0-ab88-20f7382dd24c",
       "MonitoringContributor": "749f88d5-cbae-40b8-bcfc-e573ddc772fa",
-      "MetricsPublisher": "3913510d-42f4-4e42-8a64-420c390055eb",
       "LogAnalyticsContributor": "92aaf0da-9dab-42b6-94a3-d43ce8d16293"
     },
     "assess": [
@@ -58,11 +57,6 @@
         "principalId": "[variables('_1.principalMap').Monitor]",
         "principalIdDisplayName": "Onboarding and Monitoring Service",
         "roleDefinitionId": "[variables('_1.roleMap').MonitoringContributor]"
-      },
-      {
-        "principalId": "[variables('_1.principalMap').Monitor]",
-        "principalIdDisplayName": "Onboarding and Monitoring Service",
-        "roleDefinitionId": "[variables('_1.roleMap').MetricsPublisher]"
       },
       {
         "principalId": "[variables('_1.principalMap').Monitor]",
