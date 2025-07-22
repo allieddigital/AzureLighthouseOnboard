@@ -6,12 +6,12 @@
     "_generator": {
       "name": "bicep",
       "version": "0.36.177.2456",
-      "templateHash": "17455105140849078852"
+      "templateHash": "16479879766505954375"
     }
   },
   "variables": {
-    "mspOfferName": "Allied Digital Remote Infrastructure Monitoring & Management - Tier 2",
-    "mspOfferDescription": "Provisions access for Tier 2 Management of your Azure environment by Allied Digital.",
+    "mspOfferName": "[Azure Deploy Link] Remote Infrastructure Monitoring and Management - Tier 2/3",
+    "mspOfferDescription": "Provisions access for Tier 2/3 Management of your Azure environment by Allied Digital.",
     "authorizations": "[flatten(createArray(variables('assess'), variables('tier1')))]",
     "_1.principalMap": {
       "Monitor": "d3b6d7a8-aeff-4940-88fc-546e7b90360e",

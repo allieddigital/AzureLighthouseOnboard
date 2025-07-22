@@ -6,11 +6,11 @@
     "_generator": {
       "name": "bicep",
       "version": "0.36.177.2456",
-      "templateHash": "14933067326933695645"
+      "templateHash": "18262607651094721407"
     }
   },
   "variables": {
-    "mspOfferName": "Allied Digital Remote Infrastructure Monitoring & Management - Assess",
+    "mspOfferName": "[Direct Link] Remote Infrastructure Monitoring and Management - Assess",
     "mspOfferDescription": "Enables Allied Digital to assess your Azure environment for Remote Infrastructure Monitoring and Management readiness.",
     "authorizations": "[variables('assess')]",
     "_1.principalMap": {
